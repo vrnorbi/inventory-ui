@@ -37,13 +37,13 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.dataSource = new ProductsDataSource(this.productsService);
-    this.dataSource.loadProducts('', '', '','','', '', 0, this.pageSize);
+    this.dataSource.loadProducts('', '', '','','', '', 'name', 'asc', 0, this.pageSize);
   }
 
   ngAfterViewInit() {
-    //
-    // this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-    //
+
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+
     merge(
       fromEvent(this.nameInput.nativeElement, 'keyup'),
       fromEvent(this.categoryInput.nativeElement, 'keyup'),
@@ -68,7 +68,7 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
         })
       ).subscribe();
 
-    merge(/*this.sort.sortChange,*/ this.paginator.page)
+    merge(this.sort.sortChange, this.paginator.page)
       .pipe(
         tap(() => this.loadProductsPage(this.nameInput.nativeElement.value,
           this.categoryInput.nativeElement.value,
@@ -95,6 +95,8 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
       priceTo,
       supplier,
       manufacturer,
+      this.sort.active,
+      this.sort.direction,
       this.paginator.pageIndex,
       this.paginator.pageSize);
   }

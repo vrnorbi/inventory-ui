@@ -25,6 +25,8 @@ export class ProductsDataSource implements DataSource<Product> {
                priceTo: string,
                supplier: string,
                manufacturer: string,
+               sortBy: string,
+               sortDirection: string,
                pageIndex: number,
                pageSize: number) {
 
@@ -33,7 +35,7 @@ export class ProductsDataSource implements DataSource<Product> {
     this.productsService.findProducts(name, category, priceFrom,
       priceTo,
       supplier,
-      manufacturer, pageIndex, pageSize).pipe(
+      manufacturer, sortBy, sortDirection, pageIndex, pageSize).pipe(
       catchError(() => of([])),
       finalize(() => this.loadingSubject.next(false))
     ).subscribe((page: Page) => {

@@ -1,9 +1,9 @@
 <div class="course">
 
-  <mat-form-field fxFlex="50">
+  <mat-form-field>
     <input matInput placeholder="name" #name>
   </mat-form-field>
-  <mat-form-field fxFlex="50">
+  <mat-form-field>
     <input matInput placeholder="category" #category>
   </mat-form-field>
   <mat-form-field>
@@ -30,7 +30,7 @@
 
     <ng-container matColumnDef="name">
 
-      <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
 
       <mat-cell *matCellDef="let product">{{product.name}}</mat-cell>
 
@@ -38,7 +38,7 @@
 
     <ng-container matColumnDef="price">
 
-      <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
 
       <mat-cell class="description-cell"
                 *matCellDef="let product">{{product.price}}</mat-cell>
