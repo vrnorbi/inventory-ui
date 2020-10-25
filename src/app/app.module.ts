@@ -1,47 +1,65 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
+import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {OrdersComponent} from './orders-table/orders.component';
-import {TableComponent} from './table/table.component';
-import {MatTableModule} from "@angular/material/table";
-import {DataPropertyGetterPipe} from './table/data-property-getter-pipe/data-property-getter.pipe';
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
-import {MatPaginatorModule} from "@angular/material/paginator";
-import {MatSortModule} from "@angular/material/sort";
-import {MatIconModule} from "@angular/material/icon";
-import {MatButtonModule} from "@angular/material/button";
-import {CustomersComponent} from './customers-table/customers.component';
-import {MatTabsModule} from "@angular/material/tabs";
-import { ProductsComponent } from './products/products.component';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
+import {HomeComponent} from './home/home.component';
+import {AboutComponent} from './about/about.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {CoursesCardListComponent} from './courses-card-list/courses-card-list.component';
+import {CourseComponent} from './course/course.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatListModule} from '@angular/material/list';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSortModule} from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {CoursesService} from './services/courses.service';
 import {HttpClientModule} from '@angular/common/http';
-import {ProductService} from './service/product.service';
+import {CourseResolver} from './services/course.resolver';
+import {ProductsService} from './services/products.service';
+import {ProductsTableComponent} from './products-table/products-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    OrdersComponent,
-    TableComponent,
-    DataPropertyGetterPipe,
-    CustomersComponent,
-    ProductsComponent
+    HomeComponent,
+    AboutComponent,
+    CourseComponent,
+    CoursesCardListComponent,
+    ProductsTableComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatTableModule,
-    MatFormFieldModule,
+    HttpClientModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    MatTabsModule,
+    MatSidenavModule,
+    MatListModule,
+    MatToolbarModule,
     MatInputModule,
+    MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatIconModule,
-    MatButtonModule,
-    MatTabsModule,
-    HttpClientModule
+    MatProgressSpinnerModule,
+    AppRoutingModule
   ],
-  providers: [ProductService],
+  providers: [
+    CoursesService,
+    CourseResolver,
+    ProductsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
