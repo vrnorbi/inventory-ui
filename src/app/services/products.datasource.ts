@@ -21,12 +21,19 @@ export class ProductsDataSource implements DataSource<Product> {
 
   loadProducts(name: string,
                category: string,
+               priceFrom: string,
+               priceTo: string,
+               supplier: string,
+               manufacturer: string,
                pageIndex: number,
                pageSize: number) {
 
     this.loadingSubject.next(true);
 
-    this.productsService.findProducts(name, category, pageIndex, pageSize).pipe(
+    this.productsService.findProducts(name, category, priceFrom,
+      priceTo,
+      supplier,
+      manufacturer, pageIndex, pageSize).pipe(
       catchError(() => of([])),
       finalize(() => this.loadingSubject.next(false))
     ).subscribe((page: Page) => {

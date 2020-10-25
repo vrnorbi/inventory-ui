@@ -26,60 +26,75 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   @ViewChild('name') nameInput: ElementRef;
-
   @ViewChild('category') categoryInput: ElementRef;
+  @ViewChild('priceFrom') priceFromInput: ElementRef;
+  @ViewChild('priceTo') priceToInput: ElementRef;
+  @ViewChild('supplier') supplierInput: ElementRef;
+  @ViewChild('manufacturer') manufacturerInput: ElementRef;
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService) {}
 
   ngOnInit() {
     this.dataSource = new ProductsDataSource(this.productsService);
-    this.dataSource.loadProducts('', '', 0, this.pageSize);
+    this.dataSource.loadProducts('', '', '','','', '', 0, this.pageSize);
   }
 
   ngAfterViewInit() {
     //
     // this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     //
-    fromEvent(this.nameInput.nativeElement, 'keyup')
+    merge(
+      fromEvent(this.nameInput.nativeElement, 'keyup'),
+      fromEvent(this.categoryInput.nativeElement, 'keyup'),
+      fromEvent(this.priceFromInput.nativeElement, 'keyup'),
+      fromEvent(this.priceToInput.nativeElement, 'keyup'),
+      fromEvent(this.supplierInput.nativeElement, 'keyup'),
+      fromEvent(this.manufacturerInput.nativeElement, 'keyup'),
+    )
       .pipe(
         debounceTime(500),
         distinctUntilChanged(),
         tap(() => {
           this.paginator.pageIndex = 0;
-
-          this.loadProductsPage(this.nameInput.nativeElement.value, this.categoryInput.nativeElement.value);
+          this.loadProductsPage(
+            this.nameInput.nativeElement.value,
+            this.categoryInput.nativeElement.value,
+            this.priceFromInput.nativeElement.value,
+            this.priceToInput.nativeElement.value,
+            this.supplierInput.nativeElement.value,
+            this.manufacturerInput.nativeElement.value
+          );
         })
-      )
-      .subscribe();
-
-    fromEvent(this.categoryInput.nativeElement, 'keyup')
-      .pipe(
-        debounceTime(500),
-        distinctUntilChanged(),
-        tap(() => {
-          this.paginator.pageIndex = 0;
-
-          this.loadProductsPage(this.nameInput.nativeElement.value,
-            this.categoryInput.nativeElement.value);
-        })
-      )
-      .subscribe();
+      ).subscribe();
 
     merge(/*this.sort.sortChange,*/ this.paginator.page)
       .pipe(
         tap(() => this.loadProductsPage(this.nameInput.nativeElement.value,
-          this.categoryInput.nativeElement.value))
+          this.categoryInput.nativeElement.value,
+          this.priceFromInput.nativeElement.value,
+          this.priceToInput.nativeElement.value,
+          this.supplierInput.nativeElement.value,
+          this.manufacturerInput.nativeElement.value))
       )
       .subscribe();
 
   }
 
   private loadProductsPage(name: string,
-                           category: string) {
+                           category: string,
+                           priceFrom: string,
+                           priceTo: string,
+                           supplier: string,
+                           manufacturer: string
+                           ) {
     this.dataSource.loadProducts(
       name,
       category,
+      priceFrom,
+      priceTo,
+      supplier,
+      manufacturer,
       this.paginator.pageIndex,
       this.paginator.pageSize);
   }
