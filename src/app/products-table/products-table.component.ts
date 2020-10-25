@@ -25,43 +25,61 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  @ViewChild('input') input: ElementRef;
+  @ViewChild('name') nameInput: ElementRef;
+
+  @ViewChild('category') categoryInput: ElementRef;
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService) {}
 
   ngOnInit() {
     this.dataSource = new ProductsDataSource(this.productsService);
-    this.dataSource.loadProducts('', 0, this.pageSize);
+    this.dataSource.loadProducts('', '', 0, this.pageSize);
   }
 
   ngAfterViewInit() {
     //
     // this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     //
-    fromEvent(this.input.nativeElement, 'keyup')
+    fromEvent(this.nameInput.nativeElement, 'keyup')
       .pipe(
         debounceTime(500),
         distinctUntilChanged(),
         tap(() => {
           this.paginator.pageIndex = 0;
 
-          this.loadProductsPage(this.input.nativeElement.value);
+          this.loadProductsPage(this.nameInput.nativeElement.value, this.categoryInput.nativeElement.value);
+        })
+      )
+      .subscribe();
+
+    fromEvent(this.categoryInput.nativeElement, 'keyup')
+      .pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        tap(() => {
+          this.paginator.pageIndex = 0;
+
+          this.loadProductsPage(this.nameInput.nativeElement.value,
+            this.categoryInput.nativeElement.value);
         })
       )
       .subscribe();
 
     merge(/*this.sort.sortChange,*/ this.paginator.page)
       .pipe(
-        tap(() => this.loadProductsPage(this.input.nativeElement.value))
+        tap(() => this.loadProductsPage(this.nameInput.nativeElement.value,
+          this.categoryInput.nativeElement.value))
       )
       .subscribe();
 
   }
 
-  private loadProductsPage(name: string) {
+  private loadProductsPage(name: string,
+                           category: string) {
     this.dataSource.loadProducts(
       name,
+      category,
       this.paginator.pageIndex,
       this.paginator.pageSize);
   }

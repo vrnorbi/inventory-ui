@@ -1,9 +1,22 @@
 <div class="course">
 
+  <mat-form-field fxFlex="50">
+    <input matInput placeholder="name" #name>
+  </mat-form-field>
+  <mat-form-field fxFlex="50">
+    <input matInput placeholder="category" #category>
+  </mat-form-field>
   <mat-form-field>
-
-    <input matInput placeholder="Search products" #input>
-
+    <input matInput placeholder="priceFrom" #priceFrom>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="priceTo" #priceTo>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="supplier" #supplier>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="manufacturer" #manufacturer>
   </mat-form-field>
 
   <div class="spinner-container" *ngIf="dataSource.loading$ | async">
