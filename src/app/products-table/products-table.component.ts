@@ -19,6 +19,8 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
 
   displayedColumns = ['name', 'price', 'category', 'supplier', 'manufacturer'];
 
+  pageSize = 6;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   @ViewChild(MatSort) sort: MatSort;
@@ -30,7 +32,7 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.dataSource = new ProductsDataSource(this.productsService);
-    this.dataSource.loadProducts(0, 10);
+    this.dataSource.loadProducts(0, this.pageSize);
   }
 
   ngAfterViewInit() {
