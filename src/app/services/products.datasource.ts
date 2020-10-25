@@ -3,7 +3,7 @@ import {BehaviorSubject, Observable, of} from 'rxjs';
 import {catchError, finalize} from 'rxjs/operators';
 import {Product} from '../model/product';
 import {ProductsService} from './products.service';
-import {Page} from '../model/page';
+import {ProductsPage} from '../model/products.page';
 
 
 export class ProductsDataSource implements DataSource<Product> {
@@ -27,7 +27,7 @@ export class ProductsDataSource implements DataSource<Product> {
     this.productsService.findProducts(pageIndex, pageSize).pipe(
       catchError(() => of([])),
       finalize(() => this.loadingSubject.next(false))
-    ).subscribe((page: Page) => {
+    ).subscribe((page: ProductsPage) => {
       console.log(page);
       this.dataLength$ = page.totalElements;
       this.productsSubject.next(page.content);
