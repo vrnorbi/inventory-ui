@@ -7,10 +7,10 @@
     <input matInput placeholder="category" #category>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="priceFrom" #priceFrom>
+    <input matInput type="number" placeholder="priceFrom" #priceFrom>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="priceTo" #priceTo>
+    <input matInput type="number" placeholder="priceTo" #priceTo>
   </mat-form-field>
   <mat-form-field>
     <input matInput placeholder="supplier" #supplier>
@@ -47,7 +47,7 @@
 
     <ng-container matColumnDef="category">
 
-      <mat-header-cell *matHeaderCellDef>Category</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Category</mat-header-cell>
 
       <mat-cell class="description-cell"
                 *matCellDef="let product">{{product.category.name}}</mat-cell>
@@ -56,7 +56,7 @@
 
     <ng-container matColumnDef="supplier">
 
-      <mat-header-cell *matHeaderCellDef>Supplier</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Supplier</mat-header-cell>
 
       <mat-cell class="description-cell"
                 *matCellDef="let product">{{product.supplier.name}}</mat-cell>
@@ -65,7 +65,7 @@
 
     <ng-container matColumnDef="manufacturer">
 
-      <mat-header-cell *matHeaderCellDef>Manufacturer</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Manufacturer</mat-header-cell>
 
       <mat-cell class="description-cell"
                 *matCellDef="let product">{{product.manufacturer.name}}</mat-cell>
