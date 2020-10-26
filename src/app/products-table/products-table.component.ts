@@ -17,7 +17,7 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
 
   dataSource: ProductsDataSource;
 
-  displayedColumns = ['name', 'price', 'category', 'supplier', 'manufacturer'];
+  displayedColumns = ['name', 'price', 'category', 'supplier', 'manufacturer', 'actions'];
 
   pageSize = 6;
 
@@ -99,6 +99,15 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
       this.sort.direction,
       this.paginator.pageIndex,
       this.paginator.pageSize);
+  }
+
+  deleteItem(id) {
+    this.productsService.deleteProductById(id).subscribe((res) => this.loadProductsPage(this.nameInput.nativeElement.value,
+      this.categoryInput.nativeElement.value,
+      this.priceFromInput.nativeElement.value,
+      this.priceToInput.nativeElement.value,
+      this.supplierInput.nativeElement.value,
+      this.manufacturerInput.nativeElement.value));
   }
 
 }

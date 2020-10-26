@@ -11,20 +11,20 @@ import {ProductResolver} from "./services/product.resolver";
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: ProductsTableComponent
 
   },
-  {
-    path: 'about',
-    component: AboutComponent
-  },
-  {
-    path: 'courses/:id',
-    component: CourseComponent,
-    resolve: {
-      course: CourseResolver
-    }
-  },
+  // {
+  //   path: 'about',
+  //   component: AboutComponent
+  // },
+  // {
+  //   path: 'courses/:id',
+  //   component: CourseComponent,
+  //   resolve: {
+  //     course: CourseResolver
+  //   }
+  // },
   {
     path: 'products',
     component: ProductsTableComponent

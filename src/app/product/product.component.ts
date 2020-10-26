@@ -13,9 +13,9 @@ export class ProductComponent implements OnInit {
   product: Product;
 
   constructor(private route: ActivatedRoute) {
-    this.route.data.subscribe((res: Product) => {
+    this.route.data.pipe(data => data).subscribe(res => {
       console.log(res);
-      this.product = res;
+      this.product = res.course;
     })
   }
 

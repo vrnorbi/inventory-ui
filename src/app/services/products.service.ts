@@ -17,6 +17,10 @@ export class ProductsService {
     return this.http.get<Product>('http://localhost:8080/products/id/', {params: params});
   }
 
+  deleteProductById(id) {
+    return this.http.delete('http://localhost:8080/products/delete/' + id);
+  }
+
   findProducts(name, category, priceFrom,
                priceTo,
                supplier,
