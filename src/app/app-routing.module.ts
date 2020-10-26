@@ -5,6 +5,7 @@ import {AboutComponent} from './about/about.component';
 import {CourseComponent} from './course/course.component';
 import {CourseResolver} from './services/course.resolver';
 import {ProductsTableComponent} from './products-table/products-table.component';
+import {ManufacturersTableComponent} from "./manufacturers-table/manufacturers-table.component";
 
 const routes: Routes = [
   {
@@ -27,6 +28,12 @@ const routes: Routes = [
     path: 'products',
     component: ProductsTableComponent
   },
+
+  {
+    path: 'manufacturers',
+    component: ManufacturersTableComponent
+  },
+
   {
     path: '**',
     redirectTo: '/'

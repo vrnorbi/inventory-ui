@@ -27,6 +27,7 @@ import {CourseResolver} from './services/course.resolver';
 import {ProductsService} from './services/products.service';
 import {ProductsTableComponent} from './products-table/products-table.component';
 import {ManufacturersTableComponent} from "./manufacturers-table/manufacturers-table.component";
+import {ManufacturersService} from "./services/manufacturers.service";
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import {ManufacturersTableComponent} from "./manufacturers-table/manufacturers-t
   providers: [
     CoursesService,
     CourseResolver,
-    ProductsService
+    ProductsService,
+    ManufacturersService
   ],
   bootstrap: [AppComponent]
 })
