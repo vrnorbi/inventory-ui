@@ -5,6 +5,8 @@ import {AboutComponent} from './about/about.component';
 import {CourseComponent} from './course/course.component';
 import {CourseResolver} from './services/course.resolver';
 import {ProductsTableComponent} from './products-table/products-table.component';
+import {ProductComponent} from "./product/product.component";
+import {ProductResolver} from "./services/product.resolver";
 
 const routes: Routes = [
   {
@@ -26,6 +28,13 @@ const routes: Routes = [
   {
     path: 'products',
     component: ProductsTableComponent
+  },
+  {
+    path: 'products/:id',
+    component: ProductComponent,
+    resolve: {
+      course: ProductResolver
+    }
   },
   {
     path: '**',

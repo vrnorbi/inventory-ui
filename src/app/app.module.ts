@@ -26,6 +26,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {CourseResolver} from './services/course.resolver';
 import {ProductsService} from './services/products.service';
 import {ProductsTableComponent} from './products-table/products-table.component';
+import {ProductComponent} from "./product/product.component";
+import {ProductResolver} from "./services/product.resolver";
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import {ProductsTableComponent} from './products-table/products-table.component'
     AboutComponent,
     CourseComponent,
     CoursesCardListComponent,
-    ProductsTableComponent
+    ProductsTableComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,8 @@ import {ProductsTableComponent} from './products-table/products-table.component'
   providers: [
     CoursesService,
     CourseResolver,
-    ProductsService
+    ProductsService,
+    ProductResolver
   ],
   bootstrap: [AppComponent]
 })
