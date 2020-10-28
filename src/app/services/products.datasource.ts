@@ -3,7 +3,7 @@ import {BehaviorSubject, Observable, of} from 'rxjs';
 import {catchError, finalize} from 'rxjs/operators';
 import {Product} from '../model/product';
 import {ProductsService} from './products.service';
-import {ProductsPage} from '../model/productsPage';
+import {ProductsPage} from '../model/products.page';
 
 
 export class ProductsDataSource implements DataSource<Product> {
