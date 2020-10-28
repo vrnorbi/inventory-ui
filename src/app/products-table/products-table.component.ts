@@ -6,6 +6,9 @@ import {debounceTime, distinctUntilChanged, tap} from 'rxjs/operators';
 import {fromEvent, merge} from 'rxjs';
 import {ProductsDataSource} from '../services/products.datasource';
 import {ProductsService} from '../services/products.service';
+import {MatDialog} from "@angular/material/dialog";
+import {AddDialogComponent} from "../add/add.dialog.component";
+import {Product} from "../model/product";
 
 
 @Component({
@@ -19,7 +22,7 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
 
   displayedColumns = ['name', 'price', 'category', 'supplier', 'manufacturer', 'actions'];
 
-  pageSize = 6;
+  pageSize = 5;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -33,11 +36,18 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
   @ViewChild('manufacturer') manufacturerInput: ElementRef;
 
   constructor(private route: ActivatedRoute,
-              private productsService: ProductsService) {}
+              private productsService: ProductsService,
+              public dialog: MatDialog) {}
 
   ngOnInit() {
     this.dataSource = new ProductsDataSource(this.productsService);
     this.dataSource.loadProducts('', '', '','','', '', 'name', 'asc', 0, this.pageSize);
+  }
+
+  openDialog(product: Product): void {
+    const dialogRef = this.dialog.open(AddDialogComponent, {
+      data: product
+    });
   }
 
   ngAfterViewInit() {
@@ -102,7 +112,7 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
   }
 
   deleteItem(id) {
-    this.productsService.deleteProductById(id).subscribe((res) => this.loadProductsPage(this.nameInput.nativeElement.value,
+    this.productsService.deleteProductById(id).subscribe(() => this.loadProductsPage(this.nameInput.nativeElement.value,
       this.categoryInput.nativeElement.value,
       this.priceFromInput.nativeElement.value,
       this.priceToInput.nativeElement.value,

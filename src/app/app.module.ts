@@ -28,6 +28,9 @@ import {ProductsService} from './services/products.service';
 import {ProductsTableComponent} from './products-table/products-table.component';
 import {ProductComponent} from "./product/product.component";
 import {ProductResolver} from "./services/product.resolver";
+import {AddDialogComponent} from "./add/add.dialog.component";
+import {MatDialogModule} from "@angular/material/dialog";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -37,7 +40,8 @@ import {ProductResolver} from "./services/product.resolver";
     CourseComponent,
     CoursesCardListComponent,
     ProductsTableComponent,
-    ProductComponent
+    ProductComponent,
+    AddDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,9 @@ import {ProductResolver} from "./services/product.resolver";
     MatPaginatorModule,
     MatSortModule,
     MatProgressSpinnerModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDialogModule,
+    FormsModule
   ],
   providers: [
     CoursesService,
