@@ -31,6 +31,10 @@ import {ProductResolver} from "./services/product.resolver";
 import {AddDialogComponent} from "./add/add.dialog.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {FormsModule} from "@angular/forms";
+import {ManufacturersTableComponent} from "./manufacturers-table/manufacturers-table.component";
+import {ManufacturersService} from "./services/manufacturers.service";
+import {CategoryTableComponent} from "./category-table/category-table.component";
+import {CategoryService} from "./services/category.service";
 
 @NgModule({
   declarations: [
@@ -41,7 +45,10 @@ import {FormsModule} from "@angular/forms";
     CoursesCardListComponent,
     ProductsTableComponent,
     ProductComponent,
-    AddDialogComponent
+    AddDialogComponent,
+    ProductsTableComponent,
+    ManufacturersTableComponent,
+    CategoryTableComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +74,9 @@ import {FormsModule} from "@angular/forms";
   providers: [
     CoursesService,
     CourseResolver,
+    ProductsService,
+    ManufacturersService,
+    CategoryService,
     ProductsService,
     ProductResolver
   ],
