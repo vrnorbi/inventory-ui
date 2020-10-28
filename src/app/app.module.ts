@@ -28,6 +28,8 @@ import {ProductsService} from './services/products.service';
 import {ProductsTableComponent} from './products-table/products-table.component';
 import {ManufacturersTableComponent} from "./manufacturers-table/manufacturers-table.component";
 import {ManufacturersService} from "./services/manufacturers.service";
+import {CategoryTableComponent} from "./category-table/category-table.component";
+import {CategoryService} from "./services/category.service";
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import {ManufacturersService} from "./services/manufacturers.service";
     CourseComponent,
     CoursesCardListComponent,
     ProductsTableComponent,
-    ManufacturersTableComponent
+    ManufacturersTableComponent,
+    CategoryTableComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,8 @@ import {ManufacturersService} from "./services/manufacturers.service";
     CoursesService,
     CourseResolver,
     ProductsService,
-    ManufacturersService
+    ManufacturersService,
+    CategoryService
   ],
   bootstrap: [AppComponent]
 })

@@ -6,6 +6,7 @@ import {CourseComponent} from './course/course.component';
 import {CourseResolver} from './services/course.resolver';
 import {ProductsTableComponent} from './products-table/products-table.component';
 import {ManufacturersTableComponent} from "./manufacturers-table/manufacturers-table.component";
+import {CategoryTableComponent} from "./category-table/category-table.component";
 
 const routes: Routes = [
   {
@@ -32,6 +33,11 @@ const routes: Routes = [
   {
     path: 'manufacturers',
     component: ManufacturersTableComponent
+  },
+
+  {
+    path: 'category',
+    component: CategoryTableComponent
   },
 
   {
