@@ -44,6 +44,9 @@ import {CategoryService} from "./services/category.service";
     CourseComponent,
     CoursesCardListComponent,
     ProductsTableComponent,
+    ManufacturersTableComponent,
+    CategoryTableComponent,
+    ProductsTableComponent,
     ProductComponent,
     AddDialogComponent,
     ProductsTableComponent,
@@ -78,7 +81,10 @@ import {CategoryService} from "./services/category.service";
     ManufacturersService,
     CategoryService,
     ProductsService,
-    ProductResolver
+    ProductResolver,
+    ProductsService,
+    ManufacturersService,
+    CategoryService
   ],
   bootstrap: [AppComponent]
 })

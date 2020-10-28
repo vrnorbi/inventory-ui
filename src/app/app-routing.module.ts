@@ -12,17 +12,6 @@ const routes: Routes = [
     component: ProductsTableComponent
 
   },
-  // {
-  //   path: 'about',
-  //   component: AboutComponent
-  // },
-  // {
-  //   path: 'courses/:id',
-  //   component: CourseComponent,
-  //   resolve: {
-  //     course: CourseResolver
-  //   }
-  // },
   {
     path: 'products',
     component: ProductsTableComponent
@@ -45,6 +34,17 @@ const routes: Routes = [
       course: ProductResolver
     }
   },
+
+  {
+    path: 'manufacturers',
+    component: ManufacturersTableComponent
+  },
+
+  {
+    path: 'category',
+    component: CategoryTableComponent
+  },
+
   {
     path: '**',
     redirectTo: '/'
