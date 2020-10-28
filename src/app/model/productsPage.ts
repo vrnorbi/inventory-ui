@@ -1,6 +1,6 @@
 import {Product} from './product';
 
-export interface Page {
+export interface ProductsPage {
   content: Array<Product>;
   totalElements: number;
 }

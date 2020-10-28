@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Page} from '../model/page';
+import {ProductsPage} from '../model/productsPage';
 import {Product} from "../model/product";
 
 
@@ -24,7 +24,7 @@ export class ProductsService {
   findProducts(name, category, priceFrom,
                priceTo,
                supplier,
-               manufacturer, sortBy, sortDirection, offset, limit): Observable<Page> {
+               manufacturer, sortBy, sortDirection, offset, limit): Observable<ProductsPage> {
     let params = new HttpParams();
     params = params.set('name', name);
     params = params.set('category', category);
@@ -40,7 +40,7 @@ export class ProductsService {
     params = params.set('sortDirection', sortDirection);
     params = params.set('page', offset);
     params = params.set('size', limit);
-    return this.http.get<Page>('http://localhost:8080/products/filter/', {params: params});
+    return this.http.get<ProductsPage>('http://localhost:8080/products/filter/', {params: params});
   }
 
 }
