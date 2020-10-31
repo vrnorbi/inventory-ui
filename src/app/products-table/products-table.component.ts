@@ -6,13 +6,13 @@ import {debounceTime, distinctUntilChanged, tap} from 'rxjs/operators';
 import {fromEvent, merge} from 'rxjs';
 import {ProductsDataSource} from '../services/products.datasource';
 import {ProductsService} from '../services/products.service';
-import {MatDialog} from "@angular/material/dialog";
-import {AddDialogComponent} from "../add/add.dialog.component";
-import {Product} from "../model/product";
+import {MatDialog} from '@angular/material/dialog';
+import {AddDialogComponent} from '../add/add.dialog.component';
+import {Product} from '../model/product';
 
 
 @Component({
-  selector: 'products-table',
+  selector: 'app-products-table',
   templateUrl: './products-table.component.html',
   styleUrls: ['./products-table.component.css']
 })
@@ -41,7 +41,7 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.dataSource = new ProductsDataSource(this.productsService);
-    this.dataSource.loadProducts('', '', '','','', '', 'name', 'asc', 0, this.pageSize);
+    this.dataSource.loadProducts('', '', '', '', '', '', 'name', 'asc', 0, this.pageSize);
   }
 
   openDialog(product: Product): void {

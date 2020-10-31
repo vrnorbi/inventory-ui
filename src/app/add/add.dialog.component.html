@@ -1,4 +1,3 @@
-<form class="mat-dialog-content" #formControl="ngForm">
   <div mat-dialog-content>
     <p>Product details</p>
     <!--  <form class="mat-dialog-content" #formControl="ngForm">-->
@@ -20,10 +19,29 @@
         <input matInput [(ngModel)]="product.price">
       </mat-form-field>
     </div>
+    <div class="form">
+      <mat-form-field color="accent">
+      <mat-label>Category</mat-label>
+      <mat-select [(ngModel)]="selectedCategory" name="food">
+        <mat-option *ngFor="let cat of categories" [value]="cat.name">
+          {{cat.name}}
+        </mat-option>
+      </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <mat-label>Manufacturer</mat-label>
+        <mat-select [(ngModel)]="selectedManufacturer" name="food">
+          <mat-option *ngFor="let manu of manufacturers" [value]="manu.name">
+            {{manu.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
     <!--  </form>-->
   </div>
   <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">No Thanks</button>
     <button mat-button [mat-dialog-close]="product.name" cdkFocusInitial>Ok</button>
   </div>
-</form>
