@@ -30,8 +30,8 @@ export class AddDialogComponent implements OnInit {
       this.categories = data;
     });
 
-    this.manufacturerService.findManufacturers(0, 10).subscribe(data => {
-      this.manufacturers = data.content;
+    this.manufacturerService.findAllManufacturers().subscribe(data => {
+      this.manufacturers = data;
     });
   }
 
