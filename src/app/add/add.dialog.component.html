@@ -22,8 +22,8 @@
     <div class="form">
       <mat-form-field color="accent">
       <mat-label>Category</mat-label>
-      <mat-select [(ngModel)]="selectedCategory" name="food">
-        <mat-option *ngFor="let cat of categories" [value]="cat.name">
+      <mat-select [(ngModel)]="product.category.id" name="category">
+        <mat-option *ngFor="let cat of categories" [value]="cat.id">
           {{cat.name}}
         </mat-option>
       </mat-select>
@@ -32,8 +32,8 @@
     <div class="form">
       <mat-form-field color="accent">
         <mat-label>Manufacturer</mat-label>
-        <mat-select [(ngModel)]="selectedManufacturer" name="food">
-          <mat-option *ngFor="let manu of manufacturers" [value]="manu.name">
+        <mat-select [(ngModel)]="product.manufacturer.id" name="manufacturer">
+          <mat-option *ngFor="let manu of manufacturers" [value]="manu.id">
             {{manu.name}}
           </mat-option>
         </mat-select>

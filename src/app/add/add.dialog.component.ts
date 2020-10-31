@@ -11,11 +11,7 @@ import {ManufacturersService} from '../services/manufacturers.service';
   templateUrl: 'add.dialog.component.html',
 })
 export class AddDialogComponent implements OnInit {
-
-  prod: Product;
   categories: Array<Category>;
-  selectedCategory: Category;
-  selectedManufacturer: Manufacturer;
   manufacturers: Array<Manufacturer>;
 
   constructor(
@@ -25,13 +21,13 @@ export class AddDialogComponent implements OnInit {
     private manufacturerService: ManufacturersService) {}
 
   onNoClick(): void {
+    console.log(this.product.category);
     this.dialogRef.close();
   }
 
   ngOnInit(): void {
-    this.prod = this.product;
-    this.categoryService.findCategory(0, 10).subscribe(data => {
-      this.categories = data.content;
+    this.categoryService.findAllCategories().subscribe(data => {
+      this.categories = data;
     });
 
     this.manufacturerService.findManufacturers(0, 10).subscribe(data => {
