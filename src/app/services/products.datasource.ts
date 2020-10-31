@@ -19,12 +19,23 @@ export class ProductsDataSource implements DataSource<Product> {
   constructor(private productsService: ProductsService) {
   }
 
-  loadProducts(pageIndex: number,
+  loadProducts(name: string,
+               category: string,
+               priceFrom: string,
+               priceTo: string,
+               supplier: string,
+               manufacturer: string,
+               sortBy: string,
+               sortDirection: string,
+               pageIndex: number,
                pageSize: number) {
 
     this.loadingSubject.next(true);
 
-    this.productsService.findProducts(pageIndex, pageSize).pipe(
+    this.productsService.findProducts(name, category, priceFrom,
+      priceTo,
+      supplier,
+      manufacturer, sortBy, sortDirection, pageIndex, pageSize).pipe(
       catchError(() => of([])),
       finalize(() => this.loadingSubject.next(false))
     ).subscribe((page: ProductsPage) => {

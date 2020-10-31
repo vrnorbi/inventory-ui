@@ -1,16 +1,21 @@
-<mat-sidenav-container fullscreen>
+<mat-sidenav-container>
 
   <mat-sidenav #start>
     <mat-nav-list>
 
-      <a mat-list-item routerLink="/">
-        <mat-icon>library_books</mat-icon>
-        <span>Courses</span>
-      </a>
-
       <a mat-list-item routerLink="/products">
         <mat-icon>library_books</mat-icon>
         <span>Products</span>
+      </a>
+
+      <a mat-list-item routerLink="/manufacturers">
+        <mat-icon>library_books</mat-icon>
+        <span>Manufacturers</span>
+      </a>
+
+      <a mat-list-item routerLink="/category">
+        <mat-icon>library_books</mat-icon>
+        <span>Categories</span>
       </a>
 
       <a mat-list-item routerLink="/manufacturers">
@@ -30,11 +35,6 @@
       <a mat-list-item>
         <mat-icon>person_add</mat-icon>
         <span>Register</span>
-      </a>
-
-      <a mat-list-item>
-        <mat-icon>account_circle</mat-icon>
-        <span>Login</span>
       </a>
 
     </mat-nav-list>

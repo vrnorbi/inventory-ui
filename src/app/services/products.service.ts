@@ -8,15 +8,39 @@ import {ProductsPage} from '../model/products.page';
 @Injectable()
 export class ProductsService {
 
-    constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
-    findProducts(offset, limit):  Observable<ProductsPage> {
-      // let params = new HttpParams();
-      // params = params.set('offset', offset);
-      // params = params.set('limit', limit);
-      // console.log('http://localhost:8080/products/paging' + params.toString());
-      console.log('http://localhost:8080/products/paging/' + offset + '/' + limit);
-      return this.http.get<ProductsPage>('http://localhost:8080/products/paging/' + offset + '/' + limit);
+  findProductById(id) {
+    let params = new HttpParams();
+    params = params.set('id', id);
+    return this.http.get<Product>('http://localhost:8080/products/id/', {params: params});
+  }
+
+  deleteProductById(id) {
+    return this.http.delete('http://localhost:8080/products/delete/' + id);
+  }
+
+  findProducts(name, category, priceFrom,
+               priceTo,
+               supplier,
+               manufacturer, sortBy, sortDirection, offset, limit): Observable<ProductsPage> {
+    let params = new HttpParams();
+    params = params.set('name', name);
+    params = params.set('category', category);
+    if (priceFrom != '') {
+      params = params.set('fromPrice', priceFrom);
     }
+    if (priceTo != '') {
+      params = params.set('toPrice', priceTo);
+    }
+    params = params.set('supplier', supplier);
+    params = params.set('manufacturer', manufacturer);
+    params = params.set('sortBy', sortBy);
+    params = params.set('sortDirection', sortDirection);
+    params = params.set('page', offset);
+    params = params.set('size', limit);
+    return this.http.get<ProductsPage>('http://localhost:8080/products/filter/', {params: params});
+  }
 
 }

@@ -1,9 +1,22 @@
 <div class="course">
 
   <mat-form-field>
-
-    <input matInput placeholder="Search products" #input>
-
+    <input matInput placeholder="name" #name>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="category" #category>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="number" placeholder="priceFrom" #priceFrom>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="number" placeholder="priceTo" #priceTo>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="supplier" #supplier>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="manufacturer" #manufacturer>
   </mat-form-field>
 
   <div class="spinner-container" *ngIf="dataSource.loading$ | async">
@@ -17,7 +30,7 @@
 
     <ng-container matColumnDef="name">
 
-      <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
 
       <mat-cell *matCellDef="let product">{{product.name}}</mat-cell>
 
@@ -25,7 +38,7 @@
 
     <ng-container matColumnDef="price">
 
-      <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
 
       <mat-cell class="description-cell"
                 *matCellDef="let product">{{product.price}}</mat-cell>
@@ -34,7 +47,7 @@
 
     <ng-container matColumnDef="category">
 
-      <mat-header-cell *matHeaderCellDef>Category</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Category</mat-header-cell>
 
       <mat-cell class="description-cell"
                 *matCellDef="let product">{{product.category.name}}</mat-cell>
@@ -43,7 +56,7 @@
 
     <ng-container matColumnDef="supplier">
 
-      <mat-header-cell *matHeaderCellDef>Supplier</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Supplier</mat-header-cell>
 
       <mat-cell class="description-cell"
                 *matCellDef="let product">{{product.supplier.name}}</mat-cell>
@@ -52,21 +65,39 @@
 
     <ng-container matColumnDef="manufacturer">
 
-      <mat-header-cell *matHeaderCellDef>Manufacturer</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Manufacturer</mat-header-cell>
 
       <mat-cell class="description-cell"
                 *matCellDef="let product">{{product.manufacturer.name}}</mat-cell>
 
     </ng-container>
 
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button color="accent">
+          <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+        </button>
+      </mat-header-cell>
+
+      <mat-cell *matCellDef="let product; let i=index;">
+        <button mat-icon-button color="accent" (click)="openDialog(product)">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="accent" (click)="deleteItem(product.id)" >
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    <mat-row *matRowDef="let product; columns: displayedColumns"></mat-row>
 
   </mat-table>
 
 
-  <mat-paginator [pageSize]="10"
+  <mat-paginator [pageSize]="pageSize"
                  [length]="dataSource.dataLength$"
                  [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
 

@@ -26,6 +26,11 @@ import {HttpClientModule} from '@angular/common/http';
 import {CourseResolver} from './services/course.resolver';
 import {ProductsService} from './services/products.service';
 import {ProductsTableComponent} from './products-table/products-table.component';
+import {ProductComponent} from "./product/product.component";
+import {ProductResolver} from "./services/product.resolver";
+import {AddDialogComponent} from "./add/add.dialog.component";
+import {MatDialogModule} from "@angular/material/dialog";
+import {FormsModule} from "@angular/forms";
 import {ManufacturersTableComponent} from "./manufacturers-table/manufacturers-table.component";
 import {ManufacturersService} from "./services/manufacturers.service";
 import {CategoryTableComponent} from "./category-table/category-table.component";
@@ -38,6 +43,12 @@ import {CategoryService} from "./services/category.service";
     AboutComponent,
     CourseComponent,
     CoursesCardListComponent,
+    ProductsTableComponent,
+    ManufacturersTableComponent,
+    CategoryTableComponent,
+    ProductsTableComponent,
+    ProductComponent,
+    AddDialogComponent,
     ProductsTableComponent,
     ManufacturersTableComponent,
     CategoryTableComponent
@@ -59,11 +70,18 @@ import {CategoryService} from "./services/category.service";
     MatPaginatorModule,
     MatSortModule,
     MatProgressSpinnerModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDialogModule,
+    FormsModule
   ],
   providers: [
     CoursesService,
     CourseResolver,
+    ProductsService,
+    ManufacturersService,
+    CategoryService,
+    ProductsService,
+    ProductResolver,
     ProductsService,
     ManufacturersService,
     CategoryService
