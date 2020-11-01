@@ -21,17 +21,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'category',
-    component: CategoryTableComponent
-  },
-
-  {
-    path: 'manufacturers',
-    component: ManufacturersTableComponent
-  },
-
-  {
-    path: 'category',
+    path: 'categories',
     component: CategoryTableComponent
   },
 
