@@ -6,6 +6,7 @@ import {tap} from 'rxjs/operators';
 import {merge} from 'rxjs';
 import {CategoryDatasource} from "../services/category.datasource";
 import {CategoryService} from "../services/category.service";
+import {HttpService} from "../services/http.service";
 
 
 @Component({
@@ -26,10 +27,10 @@ export class CategoryTableComponent implements OnInit, AfterViewInit {
   @ViewChild('input') input: ElementRef;
 
   constructor(private route: ActivatedRoute,
-              private categoryService: CategoryService) {}
+              private httpService: HttpService) {}
 
   ngOnInit() {
-    this.dataSource = new CategoryDatasource(this.categoryService);
+    this.dataSource = new CategoryDatasource(this.httpService);
     this.dataSource.loadCategory(0, 10);
   }
 

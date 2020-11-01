@@ -4,6 +4,7 @@ import {catchError, finalize} from 'rxjs/operators';
 import {Category} from '../model/category';
 import {CategoryService} from './category.service';
 import {Page} from '../model/page';
+import {HttpService} from "./http.service";
 
 
 export class CategoryDatasource implements DataSource<Category> {
@@ -16,14 +17,14 @@ export class CategoryDatasource implements DataSource<Category> {
 
   public dataLength$;
 
-  constructor(private categoryService: CategoryService) {
+  constructor(private httpService: HttpService) {
   }
 
   loadCategory(pageIndex: number, pageSize: number) {
 
     this.loadingSubject.next(true);
 
-    this.categoryService.findCategory(pageIndex, pageSize).pipe(
+    this.httpService.findPage<Category>('/categories/filter/', pageIndex, pageSize).pipe(
       catchError(() => of([])),
       finalize(() => this.loadingSubject.next(false))
     ).subscribe((page: Page<Category>) => {

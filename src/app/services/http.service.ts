@@ -18,7 +18,7 @@ export class HttpService {
     let params = new HttpParams();
     params = params.set('page', offset);
     params = params.set('size', limit);
-    return this.http.get<Page<T>>('http://localhost:8080/' + url, {params : params});
+    return this.http.get<Page<T>>('http://localhost:8080' + url, {params : params});
   }
 
 }
