@@ -45,13 +45,12 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
   }
 
   openDialog(product: Product): void {
-    const dialogRef = this.dialog.open(AddDialogComponent, {
+    this.dialog.open(AddDialogComponent, {
       data: product
     });
   }
 
   ngAfterViewInit() {
-
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
 
     merge(
@@ -67,44 +66,26 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
         distinctUntilChanged(),
         tap(() => {
           this.paginator.pageIndex = 0;
-          this.loadProductsPage(
-            this.nameInput.nativeElement.value,
-            this.categoryInput.nativeElement.value,
-            this.priceFromInput.nativeElement.value,
-            this.priceToInput.nativeElement.value,
-            this.supplierInput.nativeElement.value,
-            this.manufacturerInput.nativeElement.value
-          );
+          this.loadProductsPage();
         })
       ).subscribe();
 
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(
-        tap(() => this.loadProductsPage(this.nameInput.nativeElement.value,
-          this.categoryInput.nativeElement.value,
-          this.priceFromInput.nativeElement.value,
-          this.priceToInput.nativeElement.value,
-          this.supplierInput.nativeElement.value,
-          this.manufacturerInput.nativeElement.value))
+        tap(() => this.loadProductsPage())
       )
       .subscribe();
 
   }
 
-  private loadProductsPage(name: string,
-                           category: string,
-                           priceFrom: string,
-                           priceTo: string,
-                           supplier: string,
-                           manufacturer: string
-                           ) {
+  private loadProductsPage() {
     this.dataSource.loadProducts(
-      name,
-      category,
-      priceFrom,
-      priceTo,
-      supplier,
-      manufacturer,
+      this.nameInput.nativeElement.value,
+      this.categoryInput.nativeElement.value,
+      this.priceFromInput.nativeElement.value,
+      this.priceToInput.nativeElement.value,
+      this.supplierInput.nativeElement.value,
+      this.manufacturerInput.nativeElement.value,
       this.sort.active,
       this.sort.direction,
       this.paginator.pageIndex,
@@ -112,12 +93,7 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
   }
 
   deleteItem(id) {
-    this.productsService.deleteProductById(id).subscribe(() => this.loadProductsPage(this.nameInput.nativeElement.value,
-      this.categoryInput.nativeElement.value,
-      this.priceFromInput.nativeElement.value,
-      this.priceToInput.nativeElement.value,
-      this.supplierInput.nativeElement.value,
-      this.manufacturerInput.nativeElement.value));
+    this.productsService.deleteProductById(id).subscribe(() => this.loadProductsPage());
   }
 
 }

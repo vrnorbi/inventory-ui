@@ -4,12 +4,12 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {tap} from 'rxjs/operators';
 import {merge} from 'rxjs';
-import {ManufacturersDatasource} from "../services/manufacturers.datasource";
-import {ManufacturersService} from "../services/manufacturers.service";
+import {ManufacturersDatasource} from '../services/manufacturers.datasource';
+import {ManufacturersService} from '../services/manufacturers.service';
 
 
 @Component({
-  selector: 'manufacturers-table',
+  selector: 'app-manufacturers-table',
   templateUrl: './manufacturers-table.component.html',
   styleUrls: ['./manufacturers-table.component.css']
 })
