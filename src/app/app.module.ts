@@ -21,11 +21,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {ProductsService} from './services/products.service';
 import {ProductsTableComponent} from './products-table/products-table.component';
 import {ManufacturersTableComponent} from './manufacturers-table/manufacturers-table.component';
-import {ProductComponent} from './product/product.component';
 import {AddDialogComponent} from './add/add.dialog.component';
 import {FormsModule} from '@angular/forms';
 import {ManufacturersService} from './services/manufacturers.service';
-import {ProductResolver} from './services/product.resolver';
 import {CategoryService} from './services/category.service';
 import {MatDialogModule} from '@angular/material/dialog';
 import {CategoryTableComponent} from './category-table/category-table.component';
@@ -38,7 +36,6 @@ import {SupplierService} from './services/supplier.service';
     AppComponent,
     ManufacturersTableComponent,
     ProductsTableComponent,
-    ProductComponent,
     AddDialogComponent,
     CategoryTableComponent
   ],
@@ -68,7 +65,6 @@ import {SupplierService} from './services/supplier.service';
     ProductsService,
     ManufacturersService,
     CategoryService,
-    ProductResolver,
     BrandService,
     SupplierService
   ],
