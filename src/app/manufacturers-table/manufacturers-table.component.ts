@@ -4,8 +4,9 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {tap} from 'rxjs/operators';
 import {merge} from 'rxjs';
-import {ManufacturersDatasource} from '../services/manufacturers.datasource';
-import {ManufacturersService} from '../services/manufacturers.service';
+import {HttpService} from '../services/http.service';
+import {PagingTableDatasource} from "../services/paging.table.datasource";
+import {Manufacturer} from "../model/manufacturer";
 
 
 @Component({
@@ -15,7 +16,7 @@ import {ManufacturersService} from '../services/manufacturers.service';
 })
 export class ManufacturersTableComponent implements OnInit, AfterViewInit {
 
-  dataSource: ManufacturersDatasource;
+  dataSource: PagingTableDatasource<Manufacturer>;
 
   displayedColumns = ['name', 'country', 'url', 'rating'];
 
@@ -26,11 +27,11 @@ export class ManufacturersTableComponent implements OnInit, AfterViewInit {
   @ViewChild('input') input: ElementRef;
 
   constructor(private route: ActivatedRoute,
-              private manufacturersService: ManufacturersService) {}
+              private httpService: HttpService) {}
 
   ngOnInit() {
-    this.dataSource = new ManufacturersDatasource(this.manufacturersService);
-    this.dataSource.loadManufacturers(0, 10);
+    this.dataSource = new PagingTableDatasource('/manufacturers/filter/', this.httpService);
+    this.dataSource.loadData(0, 10);
   }
 
   ngAfterViewInit() {
@@ -58,7 +59,7 @@ export class ManufacturersTableComponent implements OnInit, AfterViewInit {
   }
 
   loadManufacturers() {
-    this.dataSource.loadManufacturers(
+    this.dataSource.loadData(
       this.paginator.pageIndex,
       this.paginator.pageSize);
   }

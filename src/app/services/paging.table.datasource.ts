@@ -2,45 +2,47 @@ import {CollectionViewer, DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, Observable, of} from 'rxjs';
 import {catchError, finalize} from 'rxjs/operators';
 import {Category} from '../model/category';
-import {CategoryService} from './category.service';
 import {Page} from '../model/page';
+import {HttpService} from './http.service';
 
 
-export class CategoryDatasource implements DataSource<Category> {
+export class PagingTableDatasource<T> implements DataSource<T> {
 
-  private categorySubject = new BehaviorSubject<Category[]>([]);
+  private dataSubject = new BehaviorSubject<T[]>([]);
 
   private loadingSubject = new BehaviorSubject<boolean>(false);
 
   public loading$ = this.loadingSubject.asObservable();
 
   public dataLength$;
+  private url: String;
 
-  constructor(private categoryService: CategoryService) {
+  constructor(url, private httpService: HttpService) {
+    this.url = url;
   }
 
-  loadCategory(pageIndex: number, pageSize: number) {
+  loadData(pageIndex: number, pageSize: number) {
 
     this.loadingSubject.next(true);
 
-    this.categoryService.findCategory(pageIndex, pageSize).pipe(
+    this.httpService.findPage<T>(this.url, pageIndex, pageSize).pipe(
       catchError(() => of([])),
       finalize(() => this.loadingSubject.next(false))
-    ).subscribe((page: Page<Category>) => {
+    ).subscribe((page: Page<T>) => {
       console.log(page);
       this.dataLength$ = page.totalElements;
-      this.categorySubject.next(page.content);
+      this.dataSubject.next(page.content);
     });
 
   }
 
-  connect(collectionViewer: CollectionViewer): Observable<Category[]> {
+  connect(collectionViewer: CollectionViewer): Observable<T[]> {
     console.log('Connecting data source');
-    return this.categorySubject.asObservable();
+    return this.dataSubject.asObservable();
   }
 
   disconnect(collectionViewer: CollectionViewer): void {
-    this.categorySubject.complete();
+    this.dataSubject.complete();
     this.loadingSubject.complete();
   }
 

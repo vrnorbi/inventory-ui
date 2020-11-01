@@ -9,7 +9,6 @@ import {ProductsService} from '../services/products.service';
 import {MatDialog} from '@angular/material/dialog';
 import {AddDialogComponent} from '../add/add.dialog.component';
 import {Product} from '../model/product';
-import {Constants} from '../model/constants';
 
 
 @Component({
@@ -22,6 +21,31 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
   dataSource: ProductsDataSource;
   displayedColumns = ['name', 'price', 'category', 'supplier', 'manufacturer', 'actions'];
   pageSize = 5;
+
+  EMPTY_PRODUCT: Product = {
+    'id' : null,
+    'name': '',
+    'price': 0,
+    'brand': {
+      'id' : null,
+      'name': ''
+    },
+    'category': {
+      'id' : null,
+      'name': ''
+    },
+    'manufacturer': {
+      'id' : null,
+      'name': '',
+      'country': '',
+      'url': '',
+      'rating': 0
+    },
+    'supplier': {
+      'id' : null,
+      'name': ''
+    }
+  };
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -41,7 +65,7 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
     this.dataSource.loadProducts();
   }
 
-  openDialog(product: Product = Constants.EMPTY_PRODUCT): void {
+  openDialog(product: Product = this.EMPTY_PRODUCT): void {
     const dialogRef = this.dialog.open(AddDialogComponent, {
       data: product
     });

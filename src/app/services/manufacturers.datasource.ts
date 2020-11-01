@@ -2,8 +2,8 @@ import {CollectionViewer, DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, Observable, of} from 'rxjs';
 import {catchError, finalize} from 'rxjs/operators';
 import {Manufacturer} from '../model/manufacturer';
-import {ManufacturersService} from './manufacturers.service';
 import {Page} from '../model/page';
+import {HttpService} from './http.service';
 
 
 export class ManufacturersDatasource implements DataSource<Manufacturer> {
@@ -16,12 +16,12 @@ export class ManufacturersDatasource implements DataSource<Manufacturer> {
 
   public dataLength$;
 
-  constructor(private manufacturersSevice: ManufacturersService) {
+  constructor(private httpSevice: HttpService) {
   }
 
   loadManufacturers(pageIndex: number, pageSize: number) {
     this.loadingSubject.next(true);
-    this.manufacturersSevice.findManufacturers(pageIndex, pageSize).pipe(
+    this.httpSevice.findPage<Manufacturer>('/manufacturers/filter/', pageIndex, pageSize).pipe(
       catchError(() => of([])),
       finalize(() => this.loadingSubject.next(false))
     ).subscribe((page: Page<Manufacturer>) => {
