@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Product} from '../model/product';
 import {Category} from '../model/category';
@@ -21,6 +21,8 @@ export class AddDialogComponent implements OnInit {
   suppliers: Array<Supplier>;
   brands: Array<Brand>;
 
+  @Output() save: EventEmitter<any> = new EventEmitter();
+
   constructor(
     public dialogRef: MatDialogRef<AddDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public product: Product,
@@ -28,7 +30,8 @@ export class AddDialogComponent implements OnInit {
     private manufacturerService: ManufacturersService,
     private supplierService: SupplierService,
     private brandService: BrandService,
-    private productsService: ProductsService) {}
+    private productsService: ProductsService) {
+  }
 
   onNoClick(): void {
     console.log(this.product.category);
@@ -54,7 +57,6 @@ export class AddDialogComponent implements OnInit {
   }
 
   onSave() {
-    console.log(this.product.category);
-    this.productsService.saveProduct(this.product).subscribe(data => data);
+    this.productsService.saveProduct(this.product).subscribe(data => this.save.emit(data));
   }
 }

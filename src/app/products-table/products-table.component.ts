@@ -9,6 +9,7 @@ import {ProductsService} from '../services/products.service';
 import {MatDialog} from '@angular/material/dialog';
 import {AddDialogComponent} from '../add/add.dialog.component';
 import {Product} from '../model/product';
+import {Constants} from '../model/constants';
 
 
 @Component({
@@ -19,15 +20,11 @@ import {Product} from '../model/product';
 export class ProductsTableComponent implements OnInit, AfterViewInit {
 
   dataSource: ProductsDataSource;
-
   displayedColumns = ['name', 'price', 'category', 'supplier', 'manufacturer', 'actions'];
-
   pageSize = 5;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
   @ViewChild(MatSort) sort: MatSort;
-
   @ViewChild('name') nameInput: ElementRef;
   @ViewChild('category') categoryInput: ElementRef;
   @ViewChild('priceFrom') priceFromInput: ElementRef;
@@ -44,9 +41,12 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
     this.dataSource.loadProducts();
   }
 
-  openDialog(product: Product): void {
-    this.dialog.open(AddDialogComponent, {
+  openDialog(product: Product = Constants.EMPTY_PRODUCT): void {
+    const dialogRef = this.dialog.open(AddDialogComponent, {
       data: product
+    });
+    dialogRef.componentInstance.save.subscribe(() => {
+      this.loadProductsPage();
     });
   }
 

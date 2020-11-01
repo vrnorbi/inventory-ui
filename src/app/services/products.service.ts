@@ -21,7 +21,6 @@ export class ProductsService {
   }
 
   saveProduct(product: Product) {
-    console.log(product.category);
     return this.http.post<Product>('http://localhost:8080/products/new', product, {});
   }
 
