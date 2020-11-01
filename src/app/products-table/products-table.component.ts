@@ -6,28 +6,25 @@ import {debounceTime, distinctUntilChanged, tap} from 'rxjs/operators';
 import {fromEvent, merge} from 'rxjs';
 import {ProductsDataSource} from '../services/products.datasource';
 import {ProductsService} from '../services/products.service';
-import {MatDialog} from "@angular/material/dialog";
-import {AddDialogComponent} from "../add/add.dialog.component";
-import {Product} from "../model/product";
+import {MatDialog} from '@angular/material/dialog';
+import {AddDialogComponent} from '../add/add.dialog.component';
+import {Product} from '../model/product';
+import {Constants} from '../model/constants';
 
 
 @Component({
-  selector: 'products-table',
+  selector: 'app-products-table',
   templateUrl: './products-table.component.html',
   styleUrls: ['./products-table.component.css']
 })
 export class ProductsTableComponent implements OnInit, AfterViewInit {
 
   dataSource: ProductsDataSource;
-
   displayedColumns = ['name', 'price', 'category', 'supplier', 'manufacturer', 'actions'];
-
   pageSize = 5;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
   @ViewChild(MatSort) sort: MatSort;
-
   @ViewChild('name') nameInput: ElementRef;
   @ViewChild('category') categoryInput: ElementRef;
   @ViewChild('priceFrom') priceFromInput: ElementRef;
@@ -41,17 +38,19 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.dataSource = new ProductsDataSource(this.productsService);
-    this.dataSource.loadProducts('', '', '','','', '', 'name', 'asc', 0, this.pageSize);
+    this.dataSource.loadProducts();
   }
 
-  openDialog(product: Product): void {
+  openDialog(product: Product = Constants.EMPTY_PRODUCT): void {
     const dialogRef = this.dialog.open(AddDialogComponent, {
       data: product
+    });
+    dialogRef.componentInstance.save.subscribe(() => {
+      this.loadProductsPage();
     });
   }
 
   ngAfterViewInit() {
-
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
 
     merge(
@@ -67,44 +66,26 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
         distinctUntilChanged(),
         tap(() => {
           this.paginator.pageIndex = 0;
-          this.loadProductsPage(
-            this.nameInput.nativeElement.value,
-            this.categoryInput.nativeElement.value,
-            this.priceFromInput.nativeElement.value,
-            this.priceToInput.nativeElement.value,
-            this.supplierInput.nativeElement.value,
-            this.manufacturerInput.nativeElement.value
-          );
+          this.loadProductsPage();
         })
       ).subscribe();
 
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(
-        tap(() => this.loadProductsPage(this.nameInput.nativeElement.value,
-          this.categoryInput.nativeElement.value,
-          this.priceFromInput.nativeElement.value,
-          this.priceToInput.nativeElement.value,
-          this.supplierInput.nativeElement.value,
-          this.manufacturerInput.nativeElement.value))
+        tap(() => this.loadProductsPage())
       )
       .subscribe();
 
   }
 
-  private loadProductsPage(name: string,
-                           category: string,
-                           priceFrom: string,
-                           priceTo: string,
-                           supplier: string,
-                           manufacturer: string
-                           ) {
+  private loadProductsPage() {
     this.dataSource.loadProducts(
-      name,
-      category,
-      priceFrom,
-      priceTo,
-      supplier,
-      manufacturer,
+      this.nameInput.nativeElement.value,
+      this.categoryInput.nativeElement.value,
+      this.priceFromInput.nativeElement.value,
+      this.priceToInput.nativeElement.value,
+      this.supplierInput.nativeElement.value,
+      this.manufacturerInput.nativeElement.value,
       this.sort.active,
       this.sort.direction,
       this.paginator.pageIndex,
@@ -112,12 +93,7 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
   }
 
   deleteItem(id) {
-    this.productsService.deleteProductById(id).subscribe(() => this.loadProductsPage(this.nameInput.nativeElement.value,
-      this.categoryInput.nativeElement.value,
-      this.priceFromInput.nativeElement.value,
-      this.priceToInput.nativeElement.value,
-      this.supplierInput.nativeElement.value,
-      this.manufacturerInput.nativeElement.value));
+    this.productsService.deleteProductById(id).subscribe(() => this.loadProductsPage());
   }
 
 }

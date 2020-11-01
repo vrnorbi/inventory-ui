@@ -1,7 +1,5 @@
-<form class="mat-dialog-content" #formControl="ngForm">
   <div mat-dialog-content>
     <p>Product details</p>
-    <!--  <form class="mat-dialog-content" #formControl="ngForm">-->
     <div class="form">
       <mat-form-field color="accent">
         <mat-label>Name</mat-label>
@@ -10,20 +8,52 @@
     </div>
     <div class="form">
       <mat-form-field color="accent">
-        <mat-label>Category</mat-label>
-        <input matInput [(ngModel)]="product.category.name">
-      </mat-form-field>
-    </div>
-    <div class="form">
-      <mat-form-field color="accent">
         <mat-label>Price</mat-label>
         <input matInput [(ngModel)]="product.price">
       </mat-form-field>
     </div>
-    <!--  </form>-->
+    <div class="form">
+      <mat-form-field color="accent">
+      <mat-label>Category</mat-label>
+      <mat-select [(ngModel)]="product.category.id" name="category">
+        <mat-option *ngFor="let cat of categories" [value]="cat.id">
+          {{cat.name}}
+        </mat-option>
+      </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <mat-label>Manufacturer</mat-label>
+        <mat-select [(ngModel)]="product.manufacturer.id" name="manufacturer">
+          <mat-option *ngFor="let manu of manufacturers" [value]="manu.id">
+            {{manu.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <mat-label>Supplier</mat-label>
+        <mat-select [(ngModel)]="product.supplier.id" name="supplier">
+          <mat-option *ngFor="let supplier of suppliers" [value]="supplier.id">
+            {{supplier.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <mat-label>Brand</mat-label>
+        <mat-select [(ngModel)]="product.brand.id" name="brand">
+          <mat-option *ngFor="let brand of brands" [value]="brand.id">
+            {{brand.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
   <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button mat-button [mat-dialog-close]="product.name" cdkFocusInitial>Ok</button>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="product.name" (click)="onSave()" cdkFocusInitial>Save</button>
   </div>
-</form>

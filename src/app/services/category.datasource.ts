@@ -1,9 +1,9 @@
 import {CollectionViewer, DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, Observable, of} from 'rxjs';
 import {catchError, finalize} from 'rxjs/operators';
-import {Category} from "../model/category";
-import {CategoryService} from "./category.service";
-import {CategoryPage} from "../model/category.page";
+import {Category} from '../model/category';
+import {CategoryService} from './category.service';
+import {Page} from '../model/page';
 
 
 export class CategoryDatasource implements DataSource<Category> {
@@ -26,7 +26,7 @@ export class CategoryDatasource implements DataSource<Category> {
     this.categoryService.findCategory(pageIndex, pageSize).pipe(
       catchError(() => of([])),
       finalize(() => this.loadingSubject.next(false))
-    ).subscribe((page: CategoryPage) => {
+    ).subscribe((page: Page<Category>) => {
       console.log(page);
       this.dataLength$ = page.totalElements;
       this.categorySubject.next(page.content);
