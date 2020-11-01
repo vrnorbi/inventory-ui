@@ -2,9 +2,8 @@ import {CollectionViewer, DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, Observable, of} from 'rxjs';
 import {catchError, finalize} from 'rxjs/operators';
 import {Category} from '../model/category';
-import {CategoryService} from './category.service';
 import {Page} from '../model/page';
-import {HttpService} from "./http.service";
+import {HttpService} from './http.service';
 
 
 export class CategoryDatasource implements DataSource<Category> {

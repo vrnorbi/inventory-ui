@@ -4,9 +4,8 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {tap} from 'rxjs/operators';
 import {merge} from 'rxjs';
-import {CategoryDatasource} from "../services/category.datasource";
-import {CategoryService} from "../services/category.service";
-import {HttpService} from "../services/http.service";
+import {CategoryDatasource} from '../services/category.datasource';
+import {HttpService} from '../services/http.service';
 
 
 @Component({

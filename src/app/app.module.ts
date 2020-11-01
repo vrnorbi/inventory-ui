@@ -23,14 +23,10 @@ import {ProductsTableComponent} from './products-table/products-table.component'
 import {ManufacturersTableComponent} from './manufacturers-table/manufacturers-table.component';
 import {AddDialogComponent} from './add/add.dialog.component';
 import {FormsModule} from '@angular/forms';
-import {ManufacturersService} from './services/manufacturers.service';
-import {CategoryService} from './services/category.service';
 import {MatDialogModule} from '@angular/material/dialog';
 import {CategoryTableComponent} from './category-table/category-table.component';
 import {MatSelectModule} from '@angular/material/select';
-import {BrandService} from './services/brand.service';
-import {SupplierService} from './services/supplier.service';
-import {HttpService} from "./services/http.service";
+import {HttpService} from './services/http.service';
 
 @NgModule({
   declarations: [
@@ -64,10 +60,6 @@ import {HttpService} from "./services/http.service";
   ],
   providers: [
     ProductsService,
-    ManufacturersService,
-    CategoryService,
-    BrandService,
-    SupplierService,
     HttpService
   ],
   bootstrap: [AppComponent]

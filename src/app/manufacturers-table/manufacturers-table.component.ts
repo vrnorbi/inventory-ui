@@ -5,7 +5,7 @@ import {MatSort} from '@angular/material/sort';
 import {tap} from 'rxjs/operators';
 import {merge} from 'rxjs';
 import {ManufacturersDatasource} from '../services/manufacturers.datasource';
-import {ManufacturersService} from '../services/manufacturers.service';
+import {HttpService} from '../services/http.service';
 
 
 @Component({
@@ -26,10 +26,10 @@ export class ManufacturersTableComponent implements OnInit, AfterViewInit {
   @ViewChild('input') input: ElementRef;
 
   constructor(private route: ActivatedRoute,
-              private manufacturersService: ManufacturersService) {}
+              private httpService: HttpService) {}
 
   ngOnInit() {
-    this.dataSource = new ManufacturersDatasource(this.manufacturersService);
+    this.dataSource = new ManufacturersDatasource(this.httpService);
     this.dataSource.loadManufacturers(0, 10);
   }
 

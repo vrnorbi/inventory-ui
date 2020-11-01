@@ -2,15 +2,11 @@ import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Product} from '../model/product';
 import {Category} from '../model/category';
-import {CategoryService} from '../services/category.service';
 import {Manufacturer} from '../model/manufacturer';
-import {ManufacturersService} from '../services/manufacturers.service';
 import {Supplier} from '../model/supplier';
 import {Brand} from '../model/brand';
-import {SupplierService} from '../services/supplier.service';
-import {BrandService} from '../services/brand.service';
 import {ProductsService} from '../services/products.service';
-import {HttpService} from "../services/http.service";
+import {HttpService} from '../services/http.service';
 
 @Component({
   selector: 'app-add-dialog',
@@ -27,10 +23,6 @@ export class AddDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<AddDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public product: Product,
-    private categoryService: CategoryService,
-    private manufacturerService: ManufacturersService,
-    private supplierService: SupplierService,
-    private brandService: BrandService,
     private productsService: ProductsService,
     private httpService: HttpService) {
   }
