@@ -9,6 +9,7 @@ import {Supplier} from '../model/supplier';
 import {Brand} from '../model/brand';
 import {SupplierService} from '../services/supplier.service';
 import {BrandService} from '../services/brand.service';
+import {ProductsService} from '../services/products.service';
 
 @Component({
   selector: 'app-add-dialog',
@@ -26,7 +27,8 @@ export class AddDialogComponent implements OnInit {
     private categoryService: CategoryService,
     private manufacturerService: ManufacturersService,
     private supplierService: SupplierService,
-    private brandService: BrandService) {}
+    private brandService: BrandService,
+    private productsService: ProductsService) {}
 
   onNoClick(): void {
     console.log(this.product.category);
@@ -51,4 +53,8 @@ export class AddDialogComponent implements OnInit {
     });
   }
 
+  onSave() {
+    console.log(this.product.category);
+    this.productsService.saveProduct(this.product).subscribe(data => data);
+  }
 }

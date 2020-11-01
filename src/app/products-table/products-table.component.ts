@@ -41,7 +41,7 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.dataSource = new ProductsDataSource(this.productsService);
-    this.dataSource.loadProducts('', '', '', '', '', '', 'name', 'asc', 0, this.pageSize);
+    this.dataSource.loadProducts();
   }
 
   openDialog(product: Product): void {

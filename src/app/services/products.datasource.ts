@@ -19,16 +19,16 @@ export class ProductsDataSource implements DataSource<Product> {
   constructor(private productsService: ProductsService) {
   }
 
-  loadProducts(name: string,
-               category: string,
-               priceFrom: string,
-               priceTo: string,
-               supplier: string,
-               manufacturer: string,
-               sortBy: string,
-               sortDirection: string,
-               pageIndex: number,
-               pageSize: number) {
+  loadProducts(name: string = '',
+               category: string = '',
+               priceFrom: string = '',
+               priceTo: string = '',
+               supplier: string = '',
+               manufacturer: string = '',
+               sortBy: string = 'name',
+               sortDirection: string = 'asc',
+               pageIndex: number = 0,
+               pageSize: number = 5) {
 
     this.loadingSubject.next(true);
 

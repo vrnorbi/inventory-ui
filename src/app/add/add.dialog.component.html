@@ -55,5 +55,5 @@
   </div>
   <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Cancel</button>
-    <button mat-button [mat-dialog-close]="product.name" cdkFocusInitial>Save</button>
+    <button mat-button [mat-dialog-close]="product.name" (click)="onSave()" cdkFocusInitial>Save</button>
   </div>

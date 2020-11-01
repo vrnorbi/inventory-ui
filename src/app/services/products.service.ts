@@ -20,6 +20,11 @@ export class ProductsService {
     return this.http.delete('http://localhost:8080/products/delete/' + id);
   }
 
+  saveProduct(product: Product) {
+    console.log(product.category);
+    return this.http.post<Product>('http://localhost:8080/products/new', product, {});
+  }
+
   findProducts(name, category, priceFrom,
                priceTo,
                supplier,
