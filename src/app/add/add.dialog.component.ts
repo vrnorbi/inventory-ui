@@ -10,6 +10,7 @@ import {Brand} from '../model/brand';
 import {SupplierService} from '../services/supplier.service';
 import {BrandService} from '../services/brand.service';
 import {ProductsService} from '../services/products.service';
+import {HttpService} from "../services/http.service";
 
 @Component({
   selector: 'app-add-dialog',
@@ -30,7 +31,8 @@ export class AddDialogComponent implements OnInit {
     private manufacturerService: ManufacturersService,
     private supplierService: SupplierService,
     private brandService: BrandService,
-    private productsService: ProductsService) {
+    private productsService: ProductsService,
+    private httpService: HttpService) {
   }
 
   onNoClick(): void {
@@ -39,19 +41,19 @@ export class AddDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.categoryService.findAllCategories().subscribe(data => {
+    this.httpService.findAll<Category>('/categories/all').subscribe(data => {
       this.categories = data;
     });
 
-    this.manufacturerService.findAllManufacturers().subscribe(data => {
+    this.httpService.findAll<Manufacturer>('/manufacturers/all').subscribe(data => {
       this.manufacturers = data;
     });
 
-    this.supplierService.findAllSuppliers().subscribe(data => {
+    this.httpService.findAll<Supplier>('/suppliers/all').subscribe(data => {
       this.suppliers = data;
     });
 
-    this.brandService.findAllBrands().subscribe(data => {
+    this.httpService.findAll<Brand>('/brands/all').subscribe(data => {
       this.brands = data;
     });
   }

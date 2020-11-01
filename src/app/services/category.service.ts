@@ -17,8 +17,4 @@ export class CategoryService {
       return this.http.get<Page<Category>>('http://localhost:8080/categories/filter/', {params : params});
     }
 
-  findAllCategories():  Observable<Array<Category>> {
-    return this.http.get<Array<Category>>('http://localhost:8080/categories/all');
-  }
-
 }

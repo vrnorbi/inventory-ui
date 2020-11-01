@@ -17,8 +17,4 @@ export class ManufacturersService {
       return this.http.get<Page<Manufacturer>>('http://localhost:8080/manufacturers/filter/', {params : params});
     }
 
-  findAllManufacturers():  Observable<Array<Manufacturer>> {
-    return this.http.get<Array<Manufacturer>>('http://localhost:8080/manufacturers/all');
-  }
-
 }

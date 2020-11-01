@@ -30,6 +30,7 @@ import {CategoryTableComponent} from './category-table/category-table.component'
 import {MatSelectModule} from '@angular/material/select';
 import {BrandService} from './services/brand.service';
 import {SupplierService} from './services/supplier.service';
+import {HttpService} from "./services/http.service";
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import {SupplierService} from './services/supplier.service';
     ManufacturersService,
     CategoryService,
     BrandService,
-    SupplierService
+    SupplierService,
+    HttpService
   ],
   bootstrap: [AppComponent]
 })
