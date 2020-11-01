@@ -39,6 +39,26 @@
         </mat-select>
       </mat-form-field>
     </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <mat-label>Supplier</mat-label>
+        <mat-select [(ngModel)]="product.supplier.id" name="supplier">
+          <mat-option *ngFor="let supplier of suppliers" [value]="supplier.id">
+            {{supplier.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <mat-label>Brand</mat-label>
+        <mat-select [(ngModel)]="product.brand.id" name="brand">
+          <mat-option *ngFor="let brand of brands" [value]="brand.id">
+            {{brand.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
     <!--  </form>-->
   </div>
   <div mat-dialog-actions>

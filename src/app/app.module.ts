@@ -30,6 +30,8 @@ import {CategoryService} from './services/category.service';
 import {MatDialogModule} from '@angular/material/dialog';
 import {CategoryTableComponent} from './category-table/category-table.component';
 import {MatSelectModule} from '@angular/material/select';
+import {BrandService} from './services/brand.service';
+import {SupplierService} from './services/supplier.service';
 
 @NgModule({
   declarations: [
@@ -67,6 +69,8 @@ import {MatSelectModule} from '@angular/material/select';
     ManufacturersService,
     CategoryService,
     ProductResolver,
+    BrandService,
+    SupplierService
   ],
   bootstrap: [AppComponent]
 })

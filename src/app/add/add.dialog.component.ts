@@ -5,6 +5,10 @@ import {Category} from '../model/category';
 import {CategoryService} from '../services/category.service';
 import {Manufacturer} from '../model/manufacturer';
 import {ManufacturersService} from '../services/manufacturers.service';
+import {Supplier} from '../model/supplier';
+import {Brand} from '../model/brand';
+import {SupplierService} from '../services/supplier.service';
+import {BrandService} from '../services/brand.service';
 
 @Component({
   selector: 'app-add-dialog',
@@ -13,12 +17,16 @@ import {ManufacturersService} from '../services/manufacturers.service';
 export class AddDialogComponent implements OnInit {
   categories: Array<Category>;
   manufacturers: Array<Manufacturer>;
+  suppliers: Array<Supplier>;
+  brands: Array<Brand>;
 
   constructor(
     public dialogRef: MatDialogRef<AddDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public product: Product,
     private categoryService: CategoryService,
-    private manufacturerService: ManufacturersService) {}
+    private manufacturerService: ManufacturersService,
+    private supplierService: SupplierService,
+    private brandService: BrandService) {}
 
   onNoClick(): void {
     console.log(this.product.category);
@@ -32,6 +40,14 @@ export class AddDialogComponent implements OnInit {
 
     this.manufacturerService.findAllManufacturers().subscribe(data => {
       this.manufacturers = data;
+    });
+
+    this.supplierService.findAllSuppliers().subscribe(data => {
+      this.suppliers = data;
+    });
+
+    this.brandService.findAllBrands().subscribe(data => {
+      this.brands = data;
     });
   }
 
