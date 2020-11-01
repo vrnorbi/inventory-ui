@@ -6,27 +6,29 @@ import {Page} from '../model/page';
 import {HttpService} from './http.service';
 
 
-export class CategoryDatasource implements DataSource<Category> {
+export class PagingTableDatasource<T> implements DataSource<T> {
 
-  private categorySubject = new BehaviorSubject<Category[]>([]);
+  private categorySubject = new BehaviorSubject<T[]>([]);
 
   private loadingSubject = new BehaviorSubject<boolean>(false);
 
   public loading$ = this.loadingSubject.asObservable();
 
   public dataLength$;
+  private url: String;
 
-  constructor(private httpService: HttpService) {
+  constructor(url, private httpService: HttpService) {
+    this.url = url;
   }
 
   loadCategory(pageIndex: number, pageSize: number) {
 
     this.loadingSubject.next(true);
 
-    this.httpService.findPage<Category>('/categories/filter/', pageIndex, pageSize).pipe(
+    this.httpService.findPage<T>(this.url, pageIndex, pageSize).pipe(
       catchError(() => of([])),
       finalize(() => this.loadingSubject.next(false))
-    ).subscribe((page: Page<Category>) => {
+    ).subscribe((page: Page<T>) => {
       console.log(page);
       this.dataLength$ = page.totalElements;
       this.categorySubject.next(page.content);
@@ -34,7 +36,7 @@ export class CategoryDatasource implements DataSource<Category> {
 
   }
 
-  connect(collectionViewer: CollectionViewer): Observable<Category[]> {
+  connect(collectionViewer: CollectionViewer): Observable<T[]> {
     console.log('Connecting data source');
     return this.categorySubject.asObservable();
   }

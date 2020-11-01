@@ -4,8 +4,9 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {tap} from 'rxjs/operators';
 import {merge} from 'rxjs';
-import {CategoryDatasource} from '../services/category.datasource';
+import {PagingTableDatasource} from '../services/paging.table.datasource';
 import {HttpService} from '../services/http.service';
+import {Category} from "../model/category";
 
 
 @Component({
@@ -15,7 +16,7 @@ import {HttpService} from '../services/http.service';
 })
 export class CategoryTableComponent implements OnInit, AfterViewInit {
 
-  dataSource: CategoryDatasource;
+  dataSource: PagingTableDatasource<Category>;
 
   displayedColumns = ['name'];
 
@@ -29,7 +30,7 @@ export class CategoryTableComponent implements OnInit, AfterViewInit {
               private httpService: HttpService) {}
 
   ngOnInit() {
-    this.dataSource = new CategoryDatasource(this.httpService);
+    this.dataSource = new PagingTableDatasource('/categories/filter/', this.httpService);
     this.dataSource.loadCategory(0, 10);
   }
 
