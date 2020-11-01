@@ -64,4 +64,7 @@ export class ManufacturersTableComponent implements OnInit, AfterViewInit {
       this.paginator.pageSize);
   }
 
+  getColor(rating: number) {
+    return rating > 3 ? 'green' : 'red';
+  }
 }
