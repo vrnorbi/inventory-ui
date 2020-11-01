@@ -31,7 +31,7 @@ export class CategoryTableComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.dataSource = new PagingTableDatasource('/categories/filter/', this.httpService);
-    this.dataSource.loadCategory(0, 10);
+    this.dataSource.loadData(0, 10);
   }
 
   ngAfterViewInit() {
@@ -59,7 +59,7 @@ export class CategoryTableComponent implements OnInit, AfterViewInit {
   }
 
   loadCategory() {
-    this.dataSource.loadCategory(
+    this.dataSource.loadData(
       this.paginator.pageIndex,
       this.paginator.pageSize);
   }

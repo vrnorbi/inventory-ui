@@ -8,7 +8,7 @@ import {HttpService} from './http.service';
 
 export class PagingTableDatasource<T> implements DataSource<T> {
 
-  private categorySubject = new BehaviorSubject<T[]>([]);
+  private dataSubject = new BehaviorSubject<T[]>([]);
 
   private loadingSubject = new BehaviorSubject<boolean>(false);
 
@@ -21,7 +21,7 @@ export class PagingTableDatasource<T> implements DataSource<T> {
     this.url = url;
   }
 
-  loadCategory(pageIndex: number, pageSize: number) {
+  loadData(pageIndex: number, pageSize: number) {
 
     this.loadingSubject.next(true);
 
@@ -31,18 +31,18 @@ export class PagingTableDatasource<T> implements DataSource<T> {
     ).subscribe((page: Page<T>) => {
       console.log(page);
       this.dataLength$ = page.totalElements;
-      this.categorySubject.next(page.content);
+      this.dataSubject.next(page.content);
     });
 
   }
 
   connect(collectionViewer: CollectionViewer): Observable<T[]> {
     console.log('Connecting data source');
-    return this.categorySubject.asObservable();
+    return this.dataSubject.asObservable();
   }
 
   disconnect(collectionViewer: CollectionViewer): void {
-    this.categorySubject.complete();
+    this.dataSubject.complete();
     this.loadingSubject.complete();
   }
 
