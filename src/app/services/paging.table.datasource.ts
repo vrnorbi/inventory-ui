@@ -1,7 +1,6 @@
 import {CollectionViewer, DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, Observable, of} from 'rxjs';
 import {catchError, finalize} from 'rxjs/operators';
-import {Category} from '../model/category';
 import {Page} from '../model/page';
 import {HttpService} from './http.service';
 
@@ -21,11 +20,11 @@ export class PagingTableDatasource<T> implements DataSource<T> {
     this.url = url;
   }
 
-  loadData(pageIndex: number, pageSize: number) {
+  loadData(pageIndex: number, pageSize: number, searchFilter: string = '') {
 
     this.loadingSubject.next(true);
 
-    this.httpService.findPage<T>(this.url, pageIndex, pageSize).pipe(
+    this.httpService.findPage<T>(this.url, pageIndex, pageSize, searchFilter).pipe(
       catchError(() => of([])),
       finalize(() => this.loadingSubject.next(false))
     ).subscribe((page: Page<T>) => {

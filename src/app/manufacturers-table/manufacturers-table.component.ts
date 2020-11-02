@@ -5,8 +5,8 @@ import {MatSort} from '@angular/material/sort';
 import {tap} from 'rxjs/operators';
 import {merge} from 'rxjs';
 import {HttpService} from '../services/http.service';
-import {PagingTableDatasource} from "../services/paging.table.datasource";
-import {Manufacturer} from "../model/manufacturer";
+import {PagingTableDatasource} from '../services/paging.table.datasource';
+import {Manufacturer} from '../model/manufacturer';
 
 
 @Component({

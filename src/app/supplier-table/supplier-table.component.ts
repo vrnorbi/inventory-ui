@@ -4,21 +4,21 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {tap} from 'rxjs/operators';
 import {merge} from 'rxjs';
-import {PagingTableDatasource} from '../services/paging.table.datasource';
 import {HttpService} from '../services/http.service';
-import {Category} from '../model/category';
+import {PagingTableDatasource} from '../services/paging.table.datasource';
+import {Supplier} from '../model/supplier';
 
 
 @Component({
-  selector: 'app-category-table',
-  templateUrl: './category-table.component.html',
-  styleUrls: ['./category-table.component.css']
+  selector: 'app-supplier-table',
+  templateUrl: './supplier-table.component.html',
+  styleUrls: ['./supplier-table.component.css']
 })
-export class CategoryTableComponent implements OnInit, AfterViewInit {
+export class SupplierTableComponent implements OnInit, AfterViewInit {
 
-  dataSource: PagingTableDatasource<Category>;
+  dataSource: PagingTableDatasource<Supplier>;
 
-  displayedColumns = ['name'];
+  displayedColumns = ['name', 'iban', 'url', 'rating'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -30,7 +30,7 @@ export class CategoryTableComponent implements OnInit, AfterViewInit {
               private httpService: HttpService) {}
 
   ngOnInit() {
-    this.dataSource = new PagingTableDatasource('/categories/filter/', this.httpService);
+    this.dataSource = new PagingTableDatasource('/suppliers/filter/', this.httpService);
     this.dataSource.loadData(0, 10);
   }
 
@@ -52,13 +52,13 @@ export class CategoryTableComponent implements OnInit, AfterViewInit {
 
     merge(/*this.sort.sortChange,*/ this.paginator.page)
       .pipe(
-        tap(() => this.loadCategory())
+        tap(() => this.loadSupplier())
       )
       .subscribe();
 
   }
 
-  loadCategory() {
+  loadSupplier() {
     this.dataSource.loadData(
       this.paginator.pageIndex,
       this.paginator.pageSize);

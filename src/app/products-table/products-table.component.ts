@@ -43,7 +43,10 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
     },
     'supplier': {
       'id' : null,
-      'name': ''
+      'name': '',
+      'iban': '',
+      'url': '',
+      'rating': 0
     }
   };
 
