@@ -20,11 +20,11 @@ export class PagingTableDatasource<T> implements DataSource<T> {
     this.url = url;
   }
 
-  loadData(pageIndex: number, pageSize: number) {
+  loadData(pageIndex: number, pageSize: number, searchFilter: string = '') {
 
     this.loadingSubject.next(true);
 
-    this.httpService.findPage<T>(this.url, pageIndex, pageSize).pipe(
+    this.httpService.findPage<T>(this.url, pageIndex, pageSize, searchFilter).pipe(
       catchError(() => of([])),
       finalize(() => this.loadingSubject.next(false))
     ).subscribe((page: Page<T>) => {

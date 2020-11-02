@@ -45,23 +45,25 @@ export class BrandTableComponent implements OnInit, AfterViewInit {
         tap(() => {
           this.paginator.pageIndex = 0;
 
-          // this.loadProductsPage();
+          this.loadBrands();
         })
       )
       .subscribe();
 
     merge(/*this.sort.sortChange,*/ this.paginator.page)
       .pipe(
-        tap(() => this.loadBrand())
+        tap(() => this.loadBrands())
       )
       .subscribe();
 
   }
 
-  loadBrand() {
+  loadBrands() {
     this.dataSource.loadData(
       this.paginator.pageIndex,
-      this.paginator.pageSize);
+      this.paginator.pageSize,
+      this.input.nativeElement.value
+    );
   }
 
 }
