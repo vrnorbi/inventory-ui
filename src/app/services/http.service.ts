@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Page} from "../model/page";
-import {Category} from "../model/category";
+import {Page} from '../model/page';
 
 
 @Injectable()

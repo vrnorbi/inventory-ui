@@ -2,21 +2,21 @@ import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/
 import {ActivatedRoute} from '@angular/router';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {tap} from 'rxjs/operators';
-import {merge} from 'rxjs';
-import {PagingTableDatasource} from '../services/paging.table.datasource';
+import {debounceTime, distinctUntilChanged, tap} from 'rxjs/operators';
+import {fromEvent, merge} from 'rxjs';
 import {HttpService} from '../services/http.service';
-import {Category} from '../model/category';
+import {PagingTableDatasource} from '../services/paging.table.datasource';
+import {Brand} from '../model/brand';
 
 
 @Component({
-  selector: 'app-category-table',
-  templateUrl: './category-table.component.html',
-  styleUrls: ['./category-table.component.css']
+  selector: 'app-brand-table',
+  templateUrl: './brand-table.component.html',
+  styleUrls: ['./brand-table.component.css']
 })
-export class CategoryTableComponent implements OnInit, AfterViewInit {
+export class BrandTableComponent implements OnInit, AfterViewInit {
 
-  dataSource: PagingTableDatasource<Category>;
+  dataSource: PagingTableDatasource<Brand>;
 
   displayedColumns = ['name'];
 
@@ -30,7 +30,7 @@ export class CategoryTableComponent implements OnInit, AfterViewInit {
               private httpService: HttpService) {}
 
   ngOnInit() {
-    this.dataSource = new PagingTableDatasource('/categories/filter/', this.httpService);
+    this.dataSource = new PagingTableDatasource('/brands/filter/', this.httpService);
     this.dataSource.loadData(0, 10);
   }
 
@@ -38,27 +38,27 @@ export class CategoryTableComponent implements OnInit, AfterViewInit {
     //
     // this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     //
-    // fromEvent(this.input.nativeElement, 'keyup')
-    //   .pipe(
-    //     debounceTime(150),
-    //     distinctUntilChanged(),
-    //     tap(() => {
-    //       this.paginator.pageIndex = 0;
-    //
-    //       this.loadProductsPage();
-    //     })
-    //   )
-    //   .subscribe();
+    fromEvent(this.input.nativeElement, 'keyup')
+      .pipe(
+        debounceTime(150),
+        distinctUntilChanged(),
+        tap(() => {
+          this.paginator.pageIndex = 0;
+
+          // this.loadProductsPage();
+        })
+      )
+      .subscribe();
 
     merge(/*this.sort.sortChange,*/ this.paginator.page)
       .pipe(
-        tap(() => this.loadCategory())
+        tap(() => this.loadBrand())
       )
       .subscribe();
 
   }
 
-  loadCategory() {
+  loadBrand() {
     this.dataSource.loadData(
       this.paginator.pageIndex,
       this.paginator.pageSize);

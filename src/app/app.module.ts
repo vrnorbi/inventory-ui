@@ -27,6 +27,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {CategoryTableComponent} from './category-table/category-table.component';
 import {MatSelectModule} from '@angular/material/select';
 import {HttpService} from './services/http.service';
+import {SupplierTableComponent} from './supplier-table/supplier-table.component';
+import {BrandTableComponent} from './brand-table/brand-table.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import {HttpService} from './services/http.service';
     ManufacturersTableComponent,
     ProductsTableComponent,
     AddDialogComponent,
-    CategoryTableComponent
+    CategoryTableComponent,
+    SupplierTableComponent,
+    BrandTableComponent
   ],
   imports: [
     BrowserModule,
