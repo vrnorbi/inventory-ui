@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Product} from '../model/product';
 import {Page} from '../model/page';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class ProductsService {
@@ -10,18 +11,12 @@ export class ProductsService {
   constructor(private http: HttpClient) {
   }
 
-  findProductById(id) {
-    let params = new HttpParams();
-    params = params.set('id', id);
-    return this.http.get<Product>('http://localhost:8080/products/id/', {params: params});
-  }
-
   deleteProductById(id) {
-    return this.http.delete('http://localhost:8080/products/delete/' + id);
+    return this.http.delete(environment.baseUrl + '/products/delete/' + id);
   }
 
   saveProduct(product: Product) {
-    return this.http.post<Product>('http://localhost:8080/products/new', product, {});
+    return this.http.post<Product>(environment.baseUrl + '/products/new', product, {});
   }
 
   findProducts(name, category, priceFrom,
@@ -43,7 +38,7 @@ export class ProductsService {
     params = params.set('sortDirection', sortDirection);
     params = params.set('page', offset);
     params = params.set('size', limit);
-    return this.http.get<Page<Product>>('http://localhost:8080/products/filter/', {params: params});
+    return this.http.get<Page<Product>>(environment.baseUrl + '/products/filter/', {params: params});
   }
 
 }
