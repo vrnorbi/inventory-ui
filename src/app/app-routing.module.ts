@@ -5,6 +5,7 @@ import {ManufacturersTableComponent} from './manufacturers-table/manufacturers-t
 import {CategoryTableComponent} from './category-table/category-table.component';
 import {BrandTableComponent} from './brand-table/brand-table.component';
 import {SupplierTableComponent} from './supplier-table/supplier-table.component';
+import {LineChartComponent} from './line-chart/line-chart.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'suppliers',
     component: SupplierTableComponent
+  },
+  {
+    path: 'chart',
+    component: LineChartComponent
   },
   {
     path: '**',
