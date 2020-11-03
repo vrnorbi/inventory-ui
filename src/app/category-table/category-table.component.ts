@@ -2,8 +2,8 @@ import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/
 import {ActivatedRoute} from '@angular/router';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {tap} from 'rxjs/operators';
-import {merge} from 'rxjs';
+import {debounceTime, distinctUntilChanged, tap} from 'rxjs/operators';
+import {fromEvent, merge} from 'rxjs';
 import {PagingTableDatasource} from '../services/paging.table.datasource';
 import {HttpService} from '../services/http.service';
 import {Category} from '../model/category';
@@ -38,30 +38,31 @@ export class CategoryTableComponent implements OnInit, AfterViewInit {
     //
     // this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     //
-    // fromEvent(this.input.nativeElement, 'keyup')
-    //   .pipe(
-    //     debounceTime(150),
-    //     distinctUntilChanged(),
-    //     tap(() => {
-    //       this.paginator.pageIndex = 0;
-    //
-    //       this.loadProductsPage();
-    //     })
-    //   )
-    //   .subscribe();
+    fromEvent(this.input.nativeElement, 'keyup')
+      .pipe(
+        debounceTime(150),
+        distinctUntilChanged(),
+        tap(() => {
+          this.paginator.pageIndex = 0;
+
+          this.loadCategories();
+        })
+      )
+      .subscribe();
 
     merge(/*this.sort.sortChange,*/ this.paginator.page)
       .pipe(
-        tap(() => this.loadCategory())
+        tap(() => this.loadCategories())
       )
       .subscribe();
 
   }
 
-  loadCategory() {
+  loadCategories() {
     this.dataSource.loadData(
       this.paginator.pageIndex,
-      this.paginator.pageSize);
+      this.paginator.pageSize,
+      this.input.nativeElement.value);
   }
 
 }

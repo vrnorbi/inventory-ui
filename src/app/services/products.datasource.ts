@@ -23,8 +23,8 @@ export class ProductsDataSource implements DataSource<Product> {
                category: string = '',
                priceFrom: string = '',
                priceTo: string = '',
-               supplier: string = '',
-               manufacturer: string = '',
+               quantityFrom: string = '',
+               quantityTo: string = '',
                sortBy: string = 'name',
                sortDirection: string = 'asc',
                pageIndex: number = 0,
@@ -34,8 +34,8 @@ export class ProductsDataSource implements DataSource<Product> {
 
     this.productsService.findProducts(name, category, priceFrom,
       priceTo,
-      supplier,
-      manufacturer, sortBy, sortDirection, pageIndex, pageSize).pipe(
+      quantityFrom,
+      quantityTo, sortBy, sortDirection, pageIndex, pageSize).pipe(
       catchError(() => of([])),
       finalize(() => this.loadingSubject.next(false))
     ).subscribe((page: Page<Product>) => {

@@ -13,10 +13,10 @@
     <input matInput type="number" placeholder="priceTo" #priceTo>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="supplier" #supplier>
+    <input matInput placeholder="quantityFrom" #quantityFrom>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="manufacturer" #manufacturer>
+    <input matInput placeholder="quantityTo" #quantityTo>
   </mat-form-field>
 
   <div class="spinner-container" *ngIf="dataSource.loading$ | async">
@@ -45,21 +45,21 @@
 
     </ng-container>
 
+    <ng-container matColumnDef="quantity">
+
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</mat-header-cell>
+
+      <mat-cell class="description-cell"
+                *matCellDef="let product" [ngStyle]="{'color': getColor(product.quantity)}">{{product.quantity}}</mat-cell>
+
+    </ng-container>
+
     <ng-container matColumnDef="category">
 
       <mat-header-cell *matHeaderCellDef mat-sort-header>Category</mat-header-cell>
 
       <mat-cell class="description-cell"
                 *matCellDef="let product">{{product.category.name}}</mat-cell>
-
-    </ng-container>
-
-    <ng-container matColumnDef="supplier">
-
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Supplier</mat-header-cell>
-
-      <mat-cell class="description-cell"
-                *matCellDef="let product">{{product.supplier.name}}</mat-cell>
 
     </ng-container>
 
