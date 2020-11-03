@@ -3,8 +3,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {ProductsTableComponent} from './products-table/products-table.component';
 import {ManufacturersTableComponent} from './manufacturers-table/manufacturers-table.component';
 import {CategoryTableComponent} from './category-table/category-table.component';
-import {BrandTableComponent} from "./brand-table/brand-table.component";
-import {SupplierTableComponent} from "./supplier-table/supplier-table.component";
+import {BrandTableComponent} from './brand-table/brand-table.component';
+import {SupplierTableComponent} from './supplier-table/supplier-table.component';
 
 const routes: Routes = [
   {
@@ -23,7 +23,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'category',
+    path: 'categories',
     component: CategoryTableComponent
   },
   {

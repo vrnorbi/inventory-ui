@@ -37,7 +37,7 @@
       <mat-header-cell *matHeaderCellDef>Url</mat-header-cell>
 
       <mat-cell class="description-cell"
-                *matCellDef="let manufacturer">{{manufacturer.url}}</mat-cell>
+                *matCellDef="let manufacturer"><a href="{{manufacturer.url}}" target="_blank">{{manufacturer.url}}</a></mat-cell>
 
     </ng-container>
 
@@ -46,7 +46,7 @@
       <mat-header-cell *matHeaderCellDef>Rating</mat-header-cell>
 
       <mat-cell class="description-cell"
-                *matCellDef="let manufacturer">{{manufacturer.rating}}</mat-cell>
+                *matCellDef="let manufacturer" [ngStyle]="{'color': getColor(manufacturer.rating)}">{{manufacturer.rating}}</mat-cell>
 
     </ng-container>
 
