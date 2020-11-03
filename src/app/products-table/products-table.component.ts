@@ -19,13 +19,14 @@ import {Product} from '../model/product';
 export class ProductsTableComponent implements OnInit, AfterViewInit {
 
   dataSource: ProductsDataSource;
-  displayedColumns = ['name', 'price', 'category', 'supplier', 'manufacturer', 'actions'];
+  displayedColumns = ['name', 'price', 'quantity', 'category', 'manufacturer', 'actions'];
   pageSize = 5;
 
   EMPTY_PRODUCT: Product = {
     'id' : null,
     'name': '',
     'price': 0,
+    'quantity': 0,
     'brand': {
       'id' : null,
       'name': ''
@@ -56,8 +57,8 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
   @ViewChild('category') categoryInput: ElementRef;
   @ViewChild('priceFrom') priceFromInput: ElementRef;
   @ViewChild('priceTo') priceToInput: ElementRef;
-  @ViewChild('supplier') supplierInput: ElementRef;
-  @ViewChild('manufacturer') manufacturerInput: ElementRef;
+  @ViewChild('quantityFrom') quantityFrom: ElementRef;
+  @ViewChild('quantityTo') quantityTo: ElementRef;
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
@@ -85,8 +86,8 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
       fromEvent(this.categoryInput.nativeElement, 'keyup'),
       fromEvent(this.priceFromInput.nativeElement, 'keyup'),
       fromEvent(this.priceToInput.nativeElement, 'keyup'),
-      fromEvent(this.supplierInput.nativeElement, 'keyup'),
-      fromEvent(this.manufacturerInput.nativeElement, 'keyup'),
+      fromEvent(this.quantityFrom.nativeElement, 'keyup'),
+      fromEvent(this.quantityTo.nativeElement, 'keyup'),
     )
       .pipe(
         debounceTime(500),
@@ -111,8 +112,8 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
       this.categoryInput.nativeElement.value,
       this.priceFromInput.nativeElement.value,
       this.priceToInput.nativeElement.value,
-      this.supplierInput.nativeElement.value,
-      this.manufacturerInput.nativeElement.value,
+      this.quantityFrom.nativeElement.value,
+      this.quantityTo.nativeElement.value,
       this.sort.active,
       this.sort.direction,
       this.paginator.pageIndex,
@@ -121,6 +122,10 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
 
   deleteItem(id) {
     this.productsService.deleteProductById(id).subscribe(() => this.loadProductsPage());
+  }
+
+  getColor(quantity: number) {
+    return quantity > 50 ? 'green' : 'red';
   }
 
 }

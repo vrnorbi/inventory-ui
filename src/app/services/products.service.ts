@@ -21,8 +21,8 @@ export class ProductsService {
 
   findProducts(name, category, priceFrom,
                priceTo,
-               supplier,
-               manufacturer, sortBy, sortDirection, offset, limit): Observable<Page<Product>> {
+               quantityFrom,
+               quantityTo, sortBy, sortDirection, offset, limit): Observable<Page<Product>> {
     let params = new HttpParams();
     params = params.set('name', name);
     params = params.set('category', category);
@@ -32,8 +32,12 @@ export class ProductsService {
     if (priceTo !== '') {
       params = params.set('toPrice', priceTo);
     }
-    params = params.set('supplier', supplier);
-    params = params.set('manufacturer', manufacturer);
+    if (quantityFrom !== '') {
+      params = params.set('fromQuantity', quantityFrom);
+    }
+    if (quantityTo !== '') {
+      params = params.set('toQuantity', quantityTo);
+    }
     params = params.set('sortBy', sortBy);
     params = params.set('sortDirection', sortDirection);
     params = params.set('page', offset);
