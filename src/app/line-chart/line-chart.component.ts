@@ -12,12 +12,8 @@ import {ProductHistory} from '../model/product-history';
   styleUrls: ['./line-chart.component.scss']
 })
 export class LineChartComponent implements OnInit {
-  public lineChartData: ChartDataSets[] = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
-    {data: [180, 480, 770, 90, 1000, 270, 400], label: 'Series C', yAxisID: 'y-axis-1'}
-  ];
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartData: ChartDataSets[];
+  public lineChartLabels: Label[];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
     scales: {
@@ -65,14 +61,6 @@ export class LineChartComponent implements OnInit {
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     },
-    { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
-    },
     { // red
       backgroundColor: 'rgba(255,0,0,0.3)',
       borderColor: 'red',
@@ -88,14 +76,22 @@ export class LineChartComponent implements OnInit {
 
   @ViewChild(BaseChartDirective, {static: true}) chart: BaseChartDirective;
 
-  private productHistories: any;
+  private productHistories: Array<ProductHistory>;
 
   constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     console.log(this.route.snapshot.data);
-    this.productHistories = this.route.snapshot.data;
+    this.productHistories = this.route.snapshot.data['productHistories'];
+    const dates: Array<string> = this.productHistories.map(value => value.date.toString());
+    const prices: Array<number> = this.productHistories.map(value => value.price);
+    const quantities: Array<number> = this.productHistories.map(value => value.quantity);
+    this.lineChartData = [
+      {data: prices, label: 'prices'},
+      {data: quantities, label: 'quantities'}
+    ];
+    this.lineChartLabels = dates;
   }
 
 }
