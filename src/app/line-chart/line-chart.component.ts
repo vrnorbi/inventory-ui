@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
+import {ActivatedRoute} from "@angular/router";
+import {Product} from "../model/product";
+import {ProductHistory} from "../model/product-history";
 // import * as pluginAnnotations from 'chartjs-plugin-annotation';
 
 @Component({
@@ -84,8 +87,13 @@ export class LineChartComponent implements OnInit {
   // public lineChartPlugins = [pluginAnnotations];
 
   @ViewChild(BaseChartDirective, {static: true}) chart: BaseChartDirective;
+  private productHistories: Array<ProductHistory>;
 
-  constructor() {
+  constructor(private route: ActivatedRoute) {
+    this.route.data.pipe(data => data).subscribe(res => {
+      console.log(res);
+      this.productHistories = res;
+    });
   }
 
   ngOnInit(): void {

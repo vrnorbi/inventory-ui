@@ -6,6 +6,7 @@ import {CategoryTableComponent} from './category-table/category-table.component'
 import {BrandTableComponent} from './brand-table/brand-table.component';
 import {SupplierTableComponent} from './supplier-table/supplier-table.component';
 import {LineChartComponent} from './line-chart/line-chart.component';
+import {ProductResolver} from './services/product.resolver';
 
 const routes: Routes = [
   {
@@ -38,6 +39,13 @@ const routes: Routes = [
   {
     path: 'chart',
     component: LineChartComponent
+  },
+  {
+    path: 'products/:id',
+    component: LineChartComponent,
+    resolve: {
+      course: ProductResolver
+    }
   },
   {
     path: '**',
