@@ -1,4 +1,4 @@
-<div class="course">
+<div class="suppliers">
 
   <mat-form-field>
 
@@ -17,7 +17,7 @@
 
     <ng-container matColumnDef="name">
 
-      <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
 
       <mat-cell *matCellDef="let supplier">{{supplier.name}}</mat-cell>
 
@@ -37,7 +37,7 @@
       <mat-header-cell *matHeaderCellDef>Url</mat-header-cell>
 
       <mat-cell class="description-cell"
-                *matCellDef="let supplier">{{supplier.url}}</mat-cell>
+                *matCellDef="let supplier "><a href="{{supplier.url}}" target="_blank">{{supplier.url}}</a></mat-cell>
 
     </ng-container>
 
@@ -46,7 +46,7 @@
       <mat-header-cell *matHeaderCellDef>Rating</mat-header-cell>
 
       <mat-cell class="description-cell"
-                *matCellDef="let supplier">{{supplier.rating}}</mat-cell>
+                *matCellDef="let supplier" [ngStyle]="{'color': getColor(supplier.rating)}">{{supplier.rating}}</mat-cell>
 
     </ng-container>
 
