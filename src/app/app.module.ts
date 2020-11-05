@@ -32,6 +32,7 @@ import {BrandTableComponent} from './brand-table/brand-table.component';
 import {ChartsModule} from 'ng2-charts';
 import {LineChartComponent} from './line-chart/line-chart.component';
 import {ProductHistoryService} from './services/product-history.service';
+import {ProductResolver} from './services/product.resolver';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import {ProductHistoryService} from './services/product-history.service';
   ],
   providers: [
     ProductsService,
+    ProductResolver,
     HttpService,
     ProductHistoryService
   ],

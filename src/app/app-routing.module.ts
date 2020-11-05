@@ -44,7 +44,7 @@ const routes: Routes = [
     path: 'products/:id',
     component: LineChartComponent,
     resolve: {
-      course: ProductResolver
+      productHistories: ProductResolver
     }
   },
   {

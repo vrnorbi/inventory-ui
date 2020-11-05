@@ -87,16 +87,15 @@ export class LineChartComponent implements OnInit {
   // public lineChartPlugins = [pluginAnnotations];
 
   @ViewChild(BaseChartDirective, {static: true}) chart: BaseChartDirective;
-  private productHistories: Array<ProductHistory>;
+
+  private productHistories: any;
 
   constructor(private route: ActivatedRoute) {
-    this.route.data.pipe(data => data).subscribe(res => {
-      console.log(res);
-      this.productHistories = res;
-    });
   }
 
   ngOnInit(): void {
+    console.log(this.route.snapshot.data);
+    this.productHistories = this.route.snapshot.data;
   }
 
 }
