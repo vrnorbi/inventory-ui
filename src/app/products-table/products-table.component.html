@@ -7,16 +7,16 @@
     <input matInput placeholder="category" #category>
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="number" placeholder="priceFrom" #priceFrom>
+    <input matInput type="number" placeholder="from price" #priceFrom>
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="number" placeholder="priceTo" #priceTo>
+    <input matInput type="number" placeholder="to price" #priceTo>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="quantityFrom" #quantityFrom>
+    <input matInput type="number" placeholder="from quantity" #quantityFrom>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="quantityTo" #quantityTo>
+    <input matInput type="number" placeholder="to quantity" #quantityTo>
   </mat-form-field>
 
   <div class="spinner-container" *ngIf="dataSource.loading$ | async">

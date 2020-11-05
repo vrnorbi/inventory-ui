@@ -20,7 +20,7 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
 
   dataSource: ProductsDataSource;
   displayedColumns = ['name', 'price', 'quantity', 'category', 'manufacturer', 'actions'];
-  pageSize = 5;
+  pageSize = 10;
 
   EMPTY_PRODUCT: Product = {
     'id' : null,

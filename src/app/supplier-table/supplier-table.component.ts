@@ -65,4 +65,8 @@ export class SupplierTableComponent implements OnInit, AfterViewInit {
       this.input.nativeElement.value);
   }
 
+  getColor(rating: number) {
+    return rating > 3 ? 'green' : 'red';
+  }
+
 }
