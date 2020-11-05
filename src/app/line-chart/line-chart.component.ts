@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
-import {ActivatedRoute} from "@angular/router";
-import {Product} from "../model/product";
-import {ProductHistory} from "../model/product-history";
+import {ActivatedRoute} from '@angular/router';
+import {Product} from '../model/product';
+import {ProductHistory} from '../model/product-history';
 // import * as pluginAnnotations from 'chartjs-plugin-annotation';
 
 @Component({

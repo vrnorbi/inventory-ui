@@ -18,7 +18,7 @@ export class BrandTableComponent implements OnInit, AfterViewInit {
 
   dataSource: PagingTableDatasource<Brand>;
 
-  displayedColumns = ['name'];
+  displayedColumns = ['name', 'brandType', 'mainProduct', 'brandsProductInInventory'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
