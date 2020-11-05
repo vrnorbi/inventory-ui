@@ -29,6 +29,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {HttpService} from './services/http.service';
 import {SupplierTableComponent} from './supplier-table/supplier-table.component';
 import {BrandTableComponent} from './brand-table/brand-table.component';
+import {ChartsModule} from 'ng2-charts';
+import {LineChartComponent} from './line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import {BrandTableComponent} from './brand-table/brand-table.component';
     AddDialogComponent,
     CategoryTableComponent,
     SupplierTableComponent,
-    BrandTableComponent
+    BrandTableComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import {BrandTableComponent} from './brand-table/brand-table.component';
     AppRoutingModule,
     MatDialogModule,
     FormsModule,
-    MatSelectModule
+    MatSelectModule,
+    ChartsModule
   ],
   providers: [
     ProductsService,
