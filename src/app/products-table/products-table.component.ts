@@ -21,36 +21,6 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
   dataSource: ProductsDataSource;
   displayedColumns = ['name', 'price', 'quantity', 'category', 'manufacturer', 'actions'];
   pageSize = 10;
-
-  EMPTY_PRODUCT: Product = {
-    'id' : null,
-    'name': '',
-    'price': 0,
-    'quantity': 0,
-    'brand': {
-      'id' : null,
-      'name': ''
-    },
-    'category': {
-      'id' : null,
-      'name': ''
-    },
-    'manufacturer': {
-      'id' : null,
-      'name': '',
-      'country': '',
-      'url': '',
-      'rating': 0
-    },
-    'supplier': {
-      'id' : null,
-      'name': '',
-      'iban': '',
-      'url': '',
-      'rating': 0
-    }
-  };
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('name') nameInput: ElementRef;
@@ -69,7 +39,7 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
     this.dataSource.loadProducts();
   }
 
-  openDialog(product: Product = this.EMPTY_PRODUCT): void {
+  openDialog(product: Product = this.productsService.newProduct()): void {
     const dialogRef = this.dialog.open(AddDialogComponent, {
       data: product
     });

@@ -75,11 +75,15 @@
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>
         <button mat-icon-button color="accent" (click)="openDialog()">
-          <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+          <mat-icon aria-label="Add">add</mat-icon>
         </button>
       </mat-header-cell>
 
       <mat-cell *matCellDef="let product; let i=index;">
+        <button mat-icon-button color="accent" [routerLink]="['/products', product.id]">
+          <mat-icon aria-label="View">remove_red_eye</mat-icon>
+        </button>
+
         <button mat-icon-button color="accent" (click)="openDialog(product)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
@@ -92,7 +96,7 @@
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-    <mat-row *matRowDef="let product; columns: displayedColumns" [routerLink]="['/products', product.id]"></mat-row>
+    <mat-row *matRowDef="let product; columns: displayedColumns"></mat-row>
 
   </mat-table>
 

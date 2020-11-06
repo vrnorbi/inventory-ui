@@ -28,7 +28,7 @@ export class ProductsDataSource implements DataSource<Product> {
                sortBy: string = 'name',
                sortDirection: string = 'asc',
                pageIndex: number = 0,
-               pageSize: number = 5) {
+               pageSize: number = 10) {
 
     this.loadingSubject.next(true);
 

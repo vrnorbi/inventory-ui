@@ -27,11 +27,6 @@ export class AddDialogComponent implements OnInit {
     private httpService: HttpService) {
   }
 
-  onNoClick(): void {
-    console.log(this.product.category);
-    this.dialogRef.close();
-  }
-
   ngOnInit(): void {
     this.httpService.findAll<Category>('/categories/all').subscribe(data => {
       this.categories = data;
@@ -48,6 +43,11 @@ export class AddDialogComponent implements OnInit {
     this.httpService.findAll<Brand>('/brands/all').subscribe(data => {
       this.brands = data;
     });
+  }
+
+  onNoClick(): void {
+    console.log(this.product.category);
+    this.dialogRef.close();
   }
 
   onSave() {
