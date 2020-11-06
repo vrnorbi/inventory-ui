@@ -18,7 +18,7 @@ export class CategoryTableComponent implements OnInit, AfterViewInit {
 
   dataSource: PagingTableDatasource<Category>;
 
-  displayedColumns = ['name'];
+  displayedColumns = ['name', 'categoryType', 'categoryProductInInventory'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 

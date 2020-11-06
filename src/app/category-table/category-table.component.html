@@ -23,6 +23,24 @@
 
     </ng-container>
 
+    <ng-container matColumnDef="categoryType">
+
+      <mat-header-cell *matHeaderCellDef>categoryType</mat-header-cell>
+
+      <mat-cell class="description-cell"
+                *matCellDef="let category">{{category.categoryType}}</mat-cell>
+
+    </ng-container>
+
+    <ng-container matColumnDef="categoryProductInInventory">
+
+      <mat-header-cell *matHeaderCellDef>categoryProductInInventory</mat-header-cell>
+
+      <mat-cell class="description-cell"
+                *matCellDef="let category">{{category.categoryProductInInventory}}</mat-cell>
+
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
