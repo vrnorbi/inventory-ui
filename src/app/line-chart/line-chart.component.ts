@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Color, BaseChartDirective, Label } from 'ng2-charts';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
+import {BaseChartDirective, Color, Label} from 'ng2-charts';
 import {ActivatedRoute} from '@angular/router';
-import {Product} from '../model/product';
 import {ProductHistory} from '../model/product-history';
-// import * as pluginAnnotations from 'chartjs-plugin-annotation';
+import {ProductLight} from '../model/product-light';
 
 @Component({
   selector: 'app-line-chart',
@@ -12,6 +11,7 @@ import {ProductHistory} from '../model/product-history';
   styleUrls: ['./line-chart.component.scss']
 })
 export class LineChartComponent implements OnInit {
+  public product: ProductLight;
   public lineChartData: ChartDataSets[];
   public lineChartLabels: Label[];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
@@ -83,7 +83,8 @@ export class LineChartComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.route.snapshot.data);
-    this.productHistories = this.route.snapshot.data['productHistories'];
+    this.product = this.route.snapshot.data['productHistories'].product;
+    this.productHistories = this.route.snapshot.data['productHistories'].productHistories;
     const dates: Array<string> = this.productHistories.map(value => value.date.toString());
     const prices: Array<number> = this.productHistories.map(value => value.price);
     const quantities: Array<number> = this.productHistories.map(value => value.quantity);
