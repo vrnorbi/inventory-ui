@@ -11,10 +11,10 @@ import {Category} from '../model/category';
 
 @Component({
   selector: 'app-category-table',
-  templateUrl: './category-table.component.html',
-  styleUrls: ['./category-table.component.css']
+  templateUrl: './categories.component.html',
+  styleUrls: ['./categories.component.css']
 })
-export class CategoryTableComponent implements OnInit, AfterViewInit {
+export class CategoriesComponent implements OnInit, AfterViewInit {
 
   dataSource: PagingTableDatasource<Category>;
 

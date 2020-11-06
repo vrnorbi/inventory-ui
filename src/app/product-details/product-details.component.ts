@@ -7,10 +7,10 @@ import {ProductLight} from '../model/product-light';
 
 @Component({
   selector: 'app-line-chart',
-  templateUrl: './product-chart.component.html',
-  styleUrls: ['./product-chart.component.css']
+  templateUrl: './product-details.component.html',
+  styleUrls: ['./product-details.component.css']
 })
-export class ProductChartComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit {
   public product: ProductLight;
   public productChartData: ChartDataSets[];
   public productChartLabels: Label[];

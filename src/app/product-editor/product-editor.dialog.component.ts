@@ -10,9 +10,9 @@ import {HttpService} from '../services/http.service';
 
 @Component({
   selector: 'app-add-dialog',
-  templateUrl: 'add.dialog.component.html',
+  templateUrl: 'product-editor.dialog.component.html',
 })
-export class AddDialogComponent implements OnInit {
+export class ProductEditorDialogComponent implements OnInit {
   categories: Array<Category>;
   manufacturers: Array<Manufacturer>;
   suppliers: Array<Supplier>;
@@ -21,7 +21,7 @@ export class AddDialogComponent implements OnInit {
   @Output() save: EventEmitter<any> = new EventEmitter();
 
   constructor(
-    public dialogRef: MatDialogRef<AddDialogComponent>,
+    public dialogRef: MatDialogRef<ProductEditorDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public product: Product,
     private productsService: ProductsService,
     private httpService: HttpService) {

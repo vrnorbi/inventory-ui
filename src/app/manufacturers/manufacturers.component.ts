@@ -6,20 +6,20 @@ import {debounceTime, distinctUntilChanged, tap} from 'rxjs/operators';
 import {fromEvent, merge} from 'rxjs';
 import {HttpService} from '../services/http.service';
 import {PagingTableDatasource} from '../services/paging.table.datasource';
-import {Supplier} from '../model/supplier';
+import {Manufacturer} from '../model/manufacturer';
 import {ColorService} from '../services/color.service';
 
 
 @Component({
-  selector: 'app-supplier-table',
-  templateUrl: './supplier-table.component.html',
-  styleUrls: ['./supplier-table.component.css']
+  selector: 'app-manufacturers-table',
+  templateUrl: './manufacturers.component.html',
+  styleUrls: ['./manufacturers.component.css']
 })
-export class SupplierTableComponent implements OnInit, AfterViewInit {
+export class ManufacturersComponent implements OnInit, AfterViewInit {
 
-  dataSource: PagingTableDatasource<Supplier>;
+  dataSource: PagingTableDatasource<Manufacturer>;
 
-  displayedColumns = ['name', 'iban', 'url', 'rating'];
+  displayedColumns = ['name', 'country', 'url', 'rating'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -32,7 +32,7 @@ export class SupplierTableComponent implements OnInit, AfterViewInit {
               private colorService: ColorService) {}
 
   ngOnInit() {
-    this.dataSource = new PagingTableDatasource('/suppliers/filter/', this.httpService);
+    this.dataSource = new PagingTableDatasource('/manufacturers/filter/', this.httpService);
     this.dataSource.loadData(0, 10);
   }
 
@@ -47,24 +47,23 @@ export class SupplierTableComponent implements OnInit, AfterViewInit {
         tap(() => {
           this.paginator.pageIndex = 0;
 
-          this.loadSuppliers();
+          this.loadManufacturers();
         })
       )
       .subscribe();
 
     merge(/*this.sort.sortChange,*/ this.paginator.page)
       .pipe(
-        tap(() => this.loadSuppliers())
+        tap(() => this.loadManufacturers())
       )
       .subscribe();
 
   }
 
-  loadSuppliers() {
+  loadManufacturers() {
     this.dataSource.loadData(
       this.paginator.pageIndex,
       this.paginator.pageSize,
       this.input.nativeElement.value);
   }
-
 }

@@ -11,10 +11,10 @@ import {Brand} from '../model/brand';
 
 @Component({
   selector: 'app-brand-table',
-  templateUrl: './brand-table.component.html',
-  styleUrls: ['./brand-table.component.css']
+  templateUrl: './brands.component.html',
+  styleUrls: ['./brands.component.css']
 })
-export class BrandTableComponent implements OnInit, AfterViewInit {
+export class BrandsComponent implements OnInit, AfterViewInit {
 
   dataSource: PagingTableDatasource<Brand>;
 

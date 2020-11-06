@@ -7,7 +7,7 @@ import {fromEvent, merge} from 'rxjs';
 import {ProductsDataSource} from '../services/products.datasource';
 import {ProductsService} from '../services/products.service';
 import {MatDialog} from '@angular/material/dialog';
-import {AddDialogComponent} from '../add/add.dialog.component';
+import {ProductEditorDialogComponent} from '../product-editor/product-editor.dialog.component';
 import {Product} from '../model/product';
 import {Constants} from '../model/constants';
 import {ColorService} from '../services/color.service';
@@ -16,10 +16,10 @@ import {HttpService} from '../services/http.service';
 
 @Component({
   selector: 'app-products-table',
-  templateUrl: './products-table.component.html',
-  styleUrls: ['./products-table.component.css']
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.css']
 })
-export class ProductsTableComponent implements OnInit, AfterViewInit {
+export class ProductsComponent implements OnInit, AfterViewInit {
 
   dataSource: ProductsDataSource;
   displayedColumns = ['name', 'price', 'quantity', 'category', 'manufacturer', 'actions'];
@@ -45,7 +45,7 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
   }
 
   openDialog(product: Product = Constants.emptyProduct()): void {
-    const dialogRef = this.dialog.open(AddDialogComponent, {
+    const dialogRef = this.dialog.open(ProductEditorDialogComponent, {
       data: { ...product }
     });
     dialogRef.componentInstance.save.subscribe(() => {
