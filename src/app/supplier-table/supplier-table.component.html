@@ -46,7 +46,10 @@
       <mat-header-cell *matHeaderCellDef>Rating</mat-header-cell>
 
       <mat-cell class="description-cell"
-                *matCellDef="let supplier" [ngStyle]="{'color': getColor(supplier.rating)}">{{supplier.rating}}</mat-cell>
+                *matCellDef="let supplier"
+                [ngStyle]="{'color': colorService.getColorForValue(supplier.rating, 3)}">
+        {{supplier.rating}}
+      </mat-cell>
 
     </ng-container>
 

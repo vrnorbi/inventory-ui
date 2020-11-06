@@ -50,7 +50,10 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</mat-header-cell>
 
       <mat-cell class="description-cell"
-                *matCellDef="let product" [ngStyle]="{'color': getColor(product.quantity)}">{{product.quantity}}</mat-cell>
+                *matCellDef="let product"
+                [ngStyle]="{'color': colorService.getColorForValue(product.quantity, 50)}">
+        {{product.quantity}}
+      </mat-cell>
 
     </ng-container>
 

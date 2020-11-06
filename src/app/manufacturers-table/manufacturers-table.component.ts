@@ -7,6 +7,7 @@ import {fromEvent, merge} from 'rxjs';
 import {HttpService} from '../services/http.service';
 import {PagingTableDatasource} from '../services/paging.table.datasource';
 import {Manufacturer} from '../model/manufacturer';
+import {ColorService} from '../services/color.service';
 
 
 @Component({
@@ -27,7 +28,8 @@ export class ManufacturersTableComponent implements OnInit, AfterViewInit {
   @ViewChild('input') input: ElementRef;
 
   constructor(private route: ActivatedRoute,
-              private httpService: HttpService) {}
+              private httpService: HttpService,
+              private colorService: ColorService) {}
 
   ngOnInit() {
     this.dataSource = new PagingTableDatasource('/manufacturers/filter/', this.httpService);
@@ -63,9 +65,5 @@ export class ManufacturersTableComponent implements OnInit, AfterViewInit {
       this.paginator.pageIndex,
       this.paginator.pageSize,
       this.input.nativeElement.value);
-  }
-
-  getColor(rating: number) {
-    return rating > 3 ? 'green' : 'red';
   }
 }

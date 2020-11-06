@@ -33,6 +33,7 @@ import {ChartsModule} from 'ng2-charts';
 import {LineChartComponent} from './line-chart/line-chart.component';
 import {ProductHistoryService} from './services/product-history.service';
 import {ProductResolver} from './services/product.resolver';
+import {ColorService} from './services/color.service';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import {ProductResolver} from './services/product.resolver';
     ProductsService,
     ProductResolver,
     HttpService,
-    ProductHistoryService
+    ProductHistoryService,
+    ColorService
   ],
   bootstrap: [AppComponent]
 })

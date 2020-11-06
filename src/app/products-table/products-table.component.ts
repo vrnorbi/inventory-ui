@@ -10,6 +10,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {AddDialogComponent} from '../add/add.dialog.component';
 import {Product} from '../model/product';
 import {Constants} from '../model/constants';
+import {ColorService} from '../services/color.service';
 
 
 @Component({
@@ -33,7 +34,8 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
-              public dialog: MatDialog) {}
+              private colorService: ColorService,
+              private dialog: MatDialog) {}
 
   ngOnInit() {
     this.dataSource = new ProductsDataSource(this.productsService);
@@ -93,10 +95,6 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
 
   deleteItem(id) {
     this.productsService.deleteProductById(id).subscribe(() => this.loadProductsPage());
-  }
-
-  getColor(quantity: number) {
-    return quantity > 50 ? 'green' : 'red';
   }
 
 }
