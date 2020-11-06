@@ -9,6 +9,7 @@ import {ProductsService} from '../services/products.service';
 import {MatDialog} from '@angular/material/dialog';
 import {AddDialogComponent} from '../add/add.dialog.component';
 import {Product} from '../model/product';
+import {Constants} from '../model/constants';
 
 
 @Component({
@@ -39,9 +40,9 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
     this.dataSource.loadProducts();
   }
 
-  openDialog(product: Product = this.productsService.newProduct()): void {
+  openDialog(product: Product = Constants.emptyProduct()): void {
     const dialogRef = this.dialog.open(AddDialogComponent, {
-      data: product
+      data: { ...product }
     });
     dialogRef.componentInstance.save.subscribe(() => {
       this.loadProductsPage();
