@@ -10,8 +10,12 @@ export class HttpService {
 
   constructor(private http: HttpClient) {}
 
-  findAll<T>(url: String): Observable<Array<T>> {
-    return this.http.get<Array<T>>(environment.baseUrl + url);
+  find<T>(url: String, params: any = {}): Observable<T> {
+    return this.http.get<T>(environment.baseUrl + url, { params : params });
+  }
+
+  findAll<T>(url: String, params: any = {}): Observable<Array<T>> {
+    return this.http.get<Array<T>>(environment.baseUrl + url, { params : params });
   }
 
   findPage<T>(url, offset, limit, searchFilter):  Observable<Page<T>> {
