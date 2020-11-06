@@ -29,7 +29,10 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
     'quantity': 0,
     'brand': {
       'id' : null,
-      'name': ''
+      'name': '',
+      'brandsProductInInventory': 0,
+      'brandType': '',
+      'mainProduct': ''
     },
     'category': {
       'id' : null,
