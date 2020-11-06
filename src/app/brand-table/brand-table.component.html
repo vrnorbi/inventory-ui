@@ -23,33 +23,6 @@
 
     </ng-container>
 
-    <ng-container matColumnDef="brandType">
-
-      <mat-header-cell *matHeaderCellDef>brandType</mat-header-cell>
-
-      <mat-cell class="description-cell"
-                *matCellDef="let brand">{{brand.brandType}}</mat-cell>
-
-    </ng-container>
-
-    <ng-container matColumnDef="mainProduct">
-
-      <mat-header-cell *matHeaderCellDef>mainProduct</mat-header-cell>
-
-      <mat-cell class="description-cell"
-                *matCellDef="let brand">{{brand.mainProduct}}</mat-cell>
-
-    </ng-container>
-
-    <ng-container matColumnDef="brandsProductInInventory">
-
-      <mat-header-cell *matHeaderCellDef>brandsProductInInventory</mat-header-cell>
-
-      <mat-cell class="description-cell"
-                *matCellDef="let brand">{{brand.brandsProductInInventory}}</mat-cell>
-
-    </ng-container>
-
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
