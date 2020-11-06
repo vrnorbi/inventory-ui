@@ -30,7 +30,7 @@ import {HttpService} from './services/http.service';
 import {SupplierTableComponent} from './supplier-table/supplier-table.component';
 import {BrandTableComponent} from './brand-table/brand-table.component';
 import {ChartsModule} from 'ng2-charts';
-import {LineChartComponent} from './line-chart/line-chart.component';
+import {ProductChartComponent} from './product-chart/product-chart.component';
 import {ProductHistoryService} from './services/product-history.service';
 import {ProductResolver} from './services/product.resolver';
 import {ColorService} from './services/color.service';
@@ -44,7 +44,7 @@ import {ColorService} from './services/color.service';
     CategoryTableComponent,
     SupplierTableComponent,
     BrandTableComponent,
-    LineChartComponent
+    ProductChartComponent
   ],
   imports: [
     BrowserModule,

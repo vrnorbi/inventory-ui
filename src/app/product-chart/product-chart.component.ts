@@ -7,14 +7,14 @@ import {ProductLight} from '../model/product-light';
 
 @Component({
   selector: 'app-line-chart',
-  templateUrl: './line-chart.component.html',
-  styleUrls: ['./line-chart.component.css']
+  templateUrl: './product-chart.component.html',
+  styleUrls: ['./product-chart.component.css']
 })
-export class LineChartComponent implements OnInit {
+export class ProductChartComponent implements OnInit {
   public product: ProductLight;
-  public lineChartData: ChartDataSets[];
-  public lineChartLabels: Label[];
-  public lineChartOptions: (ChartOptions & { annotation: any }) = {
+  public productChartData: ChartDataSets[];
+  public productChartLabels: Label[];
+  public productChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
     scales: {
       yAxes: [
@@ -52,7 +52,7 @@ export class LineChartComponent implements OnInit {
       ],
     },
   };
-  public lineChartColors: Color[] = [
+  public productChartColors: Color[] = [
     { // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
       borderColor: 'rgba(148,159,177,1)',
@@ -70,9 +70,8 @@ export class LineChartComponent implements OnInit {
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     }
   ];
-  public lineChartLegend = true;
-  public lineChartType: ChartType = 'line';
-  // public lineChartPlugins = [pluginAnnotations];
+  public productChartLegend = true;
+  public productChartType: ChartType = 'line';
 
   @ViewChild(BaseChartDirective, {static: true}) chart: BaseChartDirective;
 
@@ -88,11 +87,11 @@ export class LineChartComponent implements OnInit {
     const dates: Array<string> = this.productHistories.map(value => value.date.toString());
     const prices: Array<number> = this.productHistories.map(value => value.price);
     const quantities: Array<number> = this.productHistories.map(value => value.quantity);
-    this.lineChartData = [
+    this.productChartData = [
       {data: prices, label: 'prices'},
       {data: quantities, label: 'quantities'}
     ];
-    this.lineChartLabels = dates;
+    this.productChartLabels = dates;
   }
 
 }
