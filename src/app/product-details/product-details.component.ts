@@ -4,6 +4,7 @@ import {BaseChartDirective, Color, Label} from 'ng2-charts';
 import {ActivatedRoute} from '@angular/router';
 import {ProductHistory} from '../model/product-history';
 import {ProductLight} from '../model/product-light';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-line-chart',
@@ -84,7 +85,7 @@ export class ProductDetailsComponent implements OnInit {
     console.log(this.route.snapshot.data);
     this.product = this.route.snapshot.data['productHistories'].product;
     this.productHistories = this.route.snapshot.data['productHistories'].productHistories;
-    const dates: Array<string> = this.productHistories.map(value => value.date.toString());
+    const dates: Array<string> = this.productHistories.map(value => formatDate(value.date, 'yyyy-MM-dd hh:mm', 'en-US'));
     const prices: Array<number> = this.productHistories.map(value => value.price);
     const quantities: Array<number> = this.productHistories.map(value => value.quantity);
     this.productChartData = [
