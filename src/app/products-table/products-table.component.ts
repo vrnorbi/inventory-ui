@@ -11,6 +11,7 @@ import {AddDialogComponent} from '../add/add.dialog.component';
 import {Product} from '../model/product';
 import {Constants} from '../model/constants';
 import {ColorService} from '../services/color.service';
+import {HttpService} from '../services/http.service';
 
 
 @Component({
@@ -34,6 +35,7 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
+              private httpService: HttpService,
               private colorService: ColorService,
               private dialog: MatDialog) {}
 
@@ -94,7 +96,8 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
   }
 
   deleteItem(id) {
-    this.productsService.deleteProductById(id).subscribe(() => this.loadProductsPage());
+    this.httpService.deleteById('/products/delete/', id)
+      .subscribe(() => this.loadProductsPage());
   }
 
 }

@@ -51,6 +51,7 @@ export class AddDialogComponent implements OnInit {
   }
 
   onSave() {
-    this.productsService.saveProduct(this.product).subscribe(data => this.save.emit(data));
+    this.httpService.saveProduct('/products/new', this.product)
+      .subscribe(data => this.save.emit(data));
   }
 }

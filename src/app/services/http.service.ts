@@ -26,4 +26,12 @@ export class HttpService {
     return this.http.get<Page<T>>(environment.baseUrl + url, {params : params});
   }
 
+  deleteById(url: String, id: number) {
+    return this.http.delete(environment.baseUrl + url + id);
+  }
+
+  saveProduct<T>(url: String, elem: T) {
+    return this.http.post<T>(environment.baseUrl + url, elem, {});
+  }
+
 }
