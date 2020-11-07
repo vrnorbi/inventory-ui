@@ -1,0 +1,18 @@
+<div class="product-details-container">
+  <h2>{{product.name}}</h2>
+  <h3>{{product.category}}</h3>
+  <div class="flex">
+    <div class="flex-item">
+      <div style="display: block;">
+        <canvas baseChart width="400" height="400"
+                [datasets]="productChartData"
+                [labels]="productChartLabels"
+                [options]="productChartOptions"
+                [colors]="productChartColors"
+                [legend]="productChartLegend"
+                [chartType]="productChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>

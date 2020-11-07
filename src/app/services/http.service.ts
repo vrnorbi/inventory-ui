@@ -10,8 +10,12 @@ export class HttpService {
 
   constructor(private http: HttpClient) {}
 
-  findAll<T>(url: String): Observable<Array<T>> {
-    return this.http.get<Array<T>>(environment.baseUrl + url);
+  find<T>(url: String, params: any = {}): Observable<T> {
+    return this.http.get<T>(environment.baseUrl + url, { params : params });
+  }
+
+  findAll<T>(url: String, params: any = {}): Observable<Array<T>> {
+    return this.http.get<Array<T>>(environment.baseUrl + url, { params : params });
   }
 
   findPage<T>(url, offset, limit, searchFilter):  Observable<Page<T>> {
@@ -20,6 +24,14 @@ export class HttpService {
     params = params.set('size', limit);
     params = params.set('name', searchFilter);
     return this.http.get<Page<T>>(environment.baseUrl + url, {params : params});
+  }
+
+  deleteById(url: String, id: number) {
+    return this.http.delete(environment.baseUrl + url + id);
+  }
+
+  saveProduct<T>(url: String, elem: T) {
+    return this.http.post<T>(environment.baseUrl + url, elem, {});
   }
 
 }

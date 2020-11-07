@@ -1,66 +1,50 @@
-<div class="suppliers">
+<div class="manufacturers-container">
 
   <mat-form-field>
-
-    <input matInput placeholder="Search supplier" #input>
-
+    <input matInput placeholder="Search manufacturers" #input>
   </mat-form-field>
 
   <div class="spinner-container" *ngIf="dataSource.loading$ | async">
-
     <mat-spinner></mat-spinner>
-
   </div>
 
-  <mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource"
+  <mat-table class="manufacturers-table mat-elevation-z8" [dataSource]="dataSource"
              matSort matSortActive="name" matSortDirection="asc" matSortDisableClear>
-
     <ng-container matColumnDef="name">
-
       <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
-
-      <mat-cell *matCellDef="let supplier">{{supplier.name}}</mat-cell>
-
+      <mat-cell *matCellDef="let manufacturer">{{manufacturer.name}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="iban">
-
-      <mat-header-cell *matHeaderCellDef>Iban</mat-header-cell>
-
+    <ng-container matColumnDef="country">
+      <mat-header-cell *matHeaderCellDef>Country</mat-header-cell>
       <mat-cell class="description-cell"
-                *matCellDef="let supplier">{{supplier.iban}}</mat-cell>
-
+                *matCellDef="let manufacturer">{{manufacturer.country}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="url">
-
       <mat-header-cell *matHeaderCellDef>Url</mat-header-cell>
-
       <mat-cell class="description-cell"
-                *matCellDef="let supplier "><a href="{{supplier.url}}" target="_blank">{{supplier.url}}</a></mat-cell>
-
+                *matCellDef="let manufacturer"><a href="{{manufacturer.url}}" target="_blank">{{manufacturer.url}}</a>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="rating">
-
       <mat-header-cell *matHeaderCellDef>Rating</mat-header-cell>
-
       <mat-cell class="description-cell"
-                *matCellDef="let supplier" [ngStyle]="{'color': getColor(supplier.rating)}">{{supplier.rating}}</mat-cell>
-
+                *matCellDef="let manufacturer"
+                [ngStyle]="{'color': colorService.getColorForValue(manufacturer.rating,  3)}">
+        {{manufacturer.rating}}
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 
   </mat-table>
 
-
   <mat-paginator [pageSize]="10"
                  [length]="dataSource.dataLength$"
                  [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
-
 
 </div>
 

@@ -8,16 +8,7 @@ import {environment} from '../../environments/environment';
 @Injectable()
 export class ProductsService {
 
-  constructor(private http: HttpClient) {
-  }
-
-  deleteProductById(id) {
-    return this.http.delete(environment.baseUrl + '/products/delete/' + id);
-  }
-
-  saveProduct(product: Product) {
-    return this.http.post<Product>(environment.baseUrl + '/products/new', product, {});
-  }
+  constructor(private http: HttpClient) {}
 
   findProducts(name, category, priceFrom,
                priceTo,

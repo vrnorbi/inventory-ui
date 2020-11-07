@@ -1,20 +1,21 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Color, BaseChartDirective, Label } from 'ng2-charts';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
+import {BaseChartDirective, Color, Label} from 'ng2-charts';
 import {ActivatedRoute} from '@angular/router';
-import {Product} from '../model/product';
 import {ProductHistory} from '../model/product-history';
-// import * as pluginAnnotations from 'chartjs-plugin-annotation';
+import {ProductLight} from '../model/product-light';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-line-chart',
-  templateUrl: './line-chart.component.html',
-  styleUrls: ['./line-chart.component.scss']
+  templateUrl: './product-details.component.html',
+  styleUrls: ['./product-details.component.css']
 })
-export class LineChartComponent implements OnInit {
-  public lineChartData: ChartDataSets[];
-  public lineChartLabels: Label[];
-  public lineChartOptions: (ChartOptions & { annotation: any }) = {
+export class ProductDetailsComponent implements OnInit {
+  public product: ProductLight;
+  public productChartData: ChartDataSets[];
+  public productChartLabels: Label[];
+  public productChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
     scales: {
       yAxes: [
@@ -52,7 +53,7 @@ export class LineChartComponent implements OnInit {
       ],
     },
   };
-  public lineChartColors: Color[] = [
+  public productChartColors: Color[] = [
     { // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
       borderColor: 'rgba(148,159,177,1)',
@@ -70,9 +71,8 @@ export class LineChartComponent implements OnInit {
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     }
   ];
-  public lineChartLegend = true;
-  public lineChartType: ChartType = 'line';
-  // public lineChartPlugins = [pluginAnnotations];
+  public productChartLegend = true;
+  public productChartType: ChartType = 'line';
 
   @ViewChild(BaseChartDirective, {static: true}) chart: BaseChartDirective;
 
@@ -83,15 +83,16 @@ export class LineChartComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.route.snapshot.data);
-    this.productHistories = this.route.snapshot.data['productHistories'];
-    const dates: Array<string> = this.productHistories.map(value => value.date.toString());
+    this.product = this.route.snapshot.data['productHistories'].product;
+    this.productHistories = this.route.snapshot.data['productHistories'].productHistories;
+    const dates: Array<string> = this.productHistories.map(value => formatDate(value.date, 'yyyy-MM-dd hh:mm', 'en-US'));
     const prices: Array<number> = this.productHistories.map(value => value.price);
     const quantities: Array<number> = this.productHistories.map(value => value.quantity);
-    this.lineChartData = [
+    this.productChartData = [
       {data: prices, label: 'prices'},
       {data: quantities, label: 'quantities'}
     ];
-    this.lineChartLabels = dates;
+    this.productChartLabels = dates;
   }
 
 }

@@ -1,0 +1,10 @@
+.manufacturers-container {
+  text-align: center;
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+.manufacturers-table {
+  min-height: 360px;
+  margin-top: 10px;
+}

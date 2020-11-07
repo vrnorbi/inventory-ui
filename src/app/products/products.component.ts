@@ -7,50 +7,23 @@ import {fromEvent, merge} from 'rxjs';
 import {ProductsDataSource} from '../services/products.datasource';
 import {ProductsService} from '../services/products.service';
 import {MatDialog} from '@angular/material/dialog';
-import {AddDialogComponent} from '../add/add.dialog.component';
+import {ProductEditorDialogComponent} from '../product-editor/product-editor.dialog.component';
 import {Product} from '../model/product';
+import {Constants} from '../model/constants';
+import {ColorService} from '../services/color.service';
+import {HttpService} from '../services/http.service';
 
 
 @Component({
   selector: 'app-products-table',
-  templateUrl: './products-table.component.html',
-  styleUrls: ['./products-table.component.css']
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.css']
 })
-export class ProductsTableComponent implements OnInit, AfterViewInit {
+export class ProductsComponent implements OnInit, AfterViewInit {
 
   dataSource: ProductsDataSource;
   displayedColumns = ['name', 'price', 'quantity', 'category', 'manufacturer', 'actions'];
   pageSize = 10;
-
-  EMPTY_PRODUCT: Product = {
-    'id' : null,
-    'name': '',
-    'price': 0,
-    'quantity': 0,
-    'brand': {
-      'id' : null,
-      'name': ''
-    },
-    'category': {
-      'id' : null,
-      'name': ''
-    },
-    'manufacturer': {
-      'id' : null,
-      'name': '',
-      'country': '',
-      'url': '',
-      'rating': 0
-    },
-    'supplier': {
-      'id' : null,
-      'name': '',
-      'iban': '',
-      'url': '',
-      'rating': 0
-    }
-  };
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('name') nameInput: ElementRef;
@@ -62,16 +35,18 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
-              public dialog: MatDialog) {}
+              private httpService: HttpService,
+              private colorService: ColorService,
+              private dialog: MatDialog) {}
 
   ngOnInit() {
     this.dataSource = new ProductsDataSource(this.productsService);
     this.dataSource.loadProducts();
   }
 
-  openDialog(product: Product = this.EMPTY_PRODUCT): void {
-    const dialogRef = this.dialog.open(AddDialogComponent, {
-      data: product
+  openDialog(product: Product = Constants.emptyProduct()): void {
+    const dialogRef = this.dialog.open(ProductEditorDialogComponent, {
+      data: { ...product }
     });
     dialogRef.componentInstance.save.subscribe(() => {
       this.loadProductsPage();
@@ -121,11 +96,8 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
   }
 
   deleteItem(id) {
-    this.productsService.deleteProductById(id).subscribe(() => this.loadProductsPage());
-  }
-
-  getColor(quantity: number) {
-    return quantity > 50 ? 'green' : 'red';
+    this.httpService.deleteById('/products/delete/', id)
+      .subscribe(() => this.loadProductsPage());
   }
 
 }

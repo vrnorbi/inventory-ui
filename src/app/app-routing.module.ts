@@ -1,48 +1,44 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {ProductsTableComponent} from './products-table/products-table.component';
-import {ManufacturersTableComponent} from './manufacturers-table/manufacturers-table.component';
-import {CategoryTableComponent} from './category-table/category-table.component';
-import {BrandTableComponent} from './brand-table/brand-table.component';
-import {SupplierTableComponent} from './supplier-table/supplier-table.component';
-import {LineChartComponent} from './line-chart/line-chart.component';
+import {ProductsComponent} from './products/products.component';
+import {ManufacturersComponent} from './manufacturers/manufacturers.component';
+import {CategoriesComponent} from './categories/categories.component';
+import {BrandsComponent} from './brands/brands.component';
+import {SuppliersComponent} from './suppliers/suppliers.component';
+import {ProductDetailsComponent} from './product-details/product-details.component';
 import {ProductResolver} from './services/product.resolver';
 
 const routes: Routes = [
   {
     path: '',
-    component: ProductsTableComponent
+    component: ProductsComponent
 
   },
   {
     path: 'products',
-    component: ProductsTableComponent
+    component: ProductsComponent
   },
 
   {
     path: 'manufacturers',
-    component: ManufacturersTableComponent
+    component: ManufacturersComponent
   },
 
   {
     path: 'categories',
-    component: CategoryTableComponent
+    component: CategoriesComponent
   },
   {
     path: 'brands',
-    component: BrandTableComponent
+    component: BrandsComponent
   },
   {
     path: 'suppliers',
-    component: SupplierTableComponent
-  },
-  {
-    path: 'chart',
-    component: LineChartComponent
+    component: SuppliersComponent
   },
   {
     path: 'products/:id',
-    component: LineChartComponent,
+    component: ProductDetailsComponent,
     resolve: {
       productHistories: ProductResolver
     }
