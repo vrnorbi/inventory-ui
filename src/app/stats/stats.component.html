@@ -31,7 +31,6 @@
   </mat-table>
 
 
-
   <h3>Products with low price</h3>
 
   <div class="spinner-container" *ngIf="lowPriceDataSource.loading$ | async">
@@ -63,8 +62,7 @@
   </mat-table>
 
 
-
-  <h3>Category's lowest price</h3>
+  <h3>Lowest priced products per category</h3>
 
   <div class="spinner-container" *ngIf="lowestCategoryPriceDataSource.loading$ | async">
     <mat-spinner></mat-spinner>
@@ -94,9 +92,3 @@
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
 </div>
-
-
-
-
-
-
