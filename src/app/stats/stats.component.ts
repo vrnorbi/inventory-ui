@@ -11,16 +11,22 @@ import {TableDatasource} from '../services/table.datasource';
 })
 export class StatsComponent implements OnInit {
 
-  dataSource: TableDatasource<Stat>;
+  lowQuantityDataSource: TableDatasource<Stat>;
+  lowPriceDataSource: TableDatasource<Stat>;
+  lowestCategoryPriceDataSource: TableDatasource<Stat>;
 
   displayedColumns = ['name', 'value', 'actions'];
 
   constructor(private httpService: HttpService) {
-    this.dataSource = new TableDatasource<Stat>(httpService);
+    this.lowQuantityDataSource = new TableDatasource<Stat>(httpService);
+    this.lowPriceDataSource = new TableDatasource<Stat>(httpService);
+    this.lowestCategoryPriceDataSource = new TableDatasource<Stat>(httpService);
   }
 
   ngOnInit() {
-    this.dataSource.loadData('/products/low-quantity/');
+    this.lowQuantityDataSource.loadData('/products/low-quantity/');
+    this.lowPriceDataSource.loadData('/products/low-price/');
+    this.lowestCategoryPriceDataSource.loadData('/products/low-price-in-category/');
   }
 
 }
