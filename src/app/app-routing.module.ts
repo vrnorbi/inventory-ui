@@ -7,6 +7,7 @@ import {BrandsComponent} from './brands/brands.component';
 import {SuppliersComponent} from './suppliers/suppliers.component';
 import {ProductDetailsComponent} from './product-details/product-details.component';
 import {ProductResolver} from './services/product.resolver';
+import {StatsComponent} from './stats/stats.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'suppliers',
     component: SuppliersComponent
+  },
+  {
+    path: 'stats',
+    component: StatsComponent
   },
   {
     path: 'products/:id',

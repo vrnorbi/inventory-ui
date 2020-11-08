@@ -33,6 +33,7 @@ import {ChartsModule} from 'ng2-charts';
 import {ProductDetailsComponent} from './product-details/product-details.component';
 import {ProductResolver} from './services/product.resolver';
 import {ColorService} from './services/color.service';
+import {StatsComponent} from './stats/stats.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {ColorService} from './services/color.service';
     CategoriesComponent,
     SuppliersComponent,
     BrandsComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,

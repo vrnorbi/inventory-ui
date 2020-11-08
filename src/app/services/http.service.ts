@@ -15,6 +15,7 @@ export class HttpService {
   }
 
   findAll<T>(url: String, params: any = {}): Observable<Array<T>> {
+    console.log(url);
     return this.http.get<Array<T>>(environment.baseUrl + url, { params : params });
   }
 
