@@ -2,11 +2,11 @@
 
   <h3>Products with low quantity</h3>
 
-  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+  <div class="spinner-container" *ngIf="lowQuantityDataSource.loading$ | async">
     <mat-spinner></mat-spinner>
   </div>
 
-  <mat-table class="stats-table mat-elevation-z8" [dataSource]="dataSource">
+  <mat-table class="stats-table mat-elevation-z8" [dataSource]="lowQuantityDataSource">
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
       <mat-cell *matCellDef="let stat">{{stat.name}}</mat-cell>
@@ -14,7 +14,7 @@
 
     <ng-container matColumnDef="value">
       <mat-header-cell *matHeaderCellDef>Quantity</mat-header-cell>
-      <mat-cell *matCellDef="let stat">{{stat.value}}</mat-cell>
+      <mat-cell *matCellDef="let stat" [ngStyle]="{'color': 'red'}">{{stat.value}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actions">
@@ -30,6 +30,69 @@
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
 
+
+
+  <h3>Products with low price</h3>
+
+  <div class="spinner-container" *ngIf="lowPriceDataSource.loading$ | async">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <mat-table class="stats-table mat-elevation-z8" [dataSource]="lowPriceDataSource">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let stat">{{stat.name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="value">
+      <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+      <mat-cell *matCellDef="let stat" [ngStyle]="{'color': 'green'}">{{stat.value}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let stat;">
+        <button mat-icon-button color="accent" [routerLink]="['/products', stat.id]">
+          <mat-icon aria-label="View">remove_red_eye</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+
+
+  <h3>Category's lowest price</h3>
+
+  <div class="spinner-container" *ngIf="lowestCategoryPriceDataSource.loading$ | async">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <mat-table class="stats-table mat-elevation-z8" [dataSource]="lowestCategoryPriceDataSource">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let stat">{{stat.name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="value">
+      <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+      <mat-cell *matCellDef="let stat" [ngStyle]="{'color': 'green'}">{{stat.value}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let stat;">
+        <button mat-icon-button color="accent" [routerLink]="['/products', stat.id]">
+          <mat-icon aria-label="View">remove_red_eye</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
 </div>
 
 
