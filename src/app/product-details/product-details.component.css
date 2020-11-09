@@ -1,6 +1,30 @@
-.product-details-container{
+.centered {
   text-align: center;
   color: red;
   max-width: 40%;
   margin: 0 auto;
+  padding-top: 40px;
+  padding-bottom: 50px;
+}
+
+.wrapper {
+  text-align: center;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.chart-container {
+  text-align: center;
+  color: red;
+  max-width: 40%;
+  margin: 0 auto;
+}
+
+.product-details-container {
+  text-align: center;
+  color: red;
+  max-width: 40%;
+  margin: 0 auto;
+  float:left;
+  vertical-align: middle;
 }

@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {ProductHistory} from '../model/product-history';
 import {ProductLight} from '../model/product-light';
 import {formatDate} from '@angular/common';
+import {Product} from '../model/product';
 
 @Component({
   selector: 'app-line-chart',
@@ -12,7 +13,7 @@ import {formatDate} from '@angular/common';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
-  public product: ProductLight;
+  public product: Product;
   public productChartData: ChartDataSets[];
   public productChartLabels: Label[];
   public productChartOptions: (ChartOptions & { annotation: any }) = {

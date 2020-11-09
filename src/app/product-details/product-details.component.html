@@ -1,17 +1,47 @@
-<div class="product-details-container">
-  <h2>{{product.name}}</h2>
-  <h3>{{product.category}}</h3>
-  <div class="flex">
-    <div class="flex-item">
-      <div style="display: block;">
-        <canvas baseChart width="400" height="400"
-                [datasets]="productChartData"
-                [labels]="productChartLabels"
-                [options]="productChartOptions"
-                [colors]="productChartColors"
-                [legend]="productChartLegend"
-                [chartType]="productChartType">
-        </canvas>
+<h2 class="centered">{{product.name}}</h2>
+
+<div class="wrapper">
+  <div class="product-details-container">
+    <mat-list>
+      <mat-list-item>price: {{product.price}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>quantity: {{product.quantity}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>category: {{product.category.name}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>brand: {{product.brand.name}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>supplier name: {{product.supplier.name}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>supplier url: {{product.supplier.url}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>supplier rating: {{product.supplier.rating}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>supplier iban: {{product.supplier.iban}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>manufacturer name: {{product.manufacturer.name}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>manufacturer url: {{product.manufacturer.url}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>manufacturer rating: {{product.manufacturer.rating}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>manufacturer country: {{product.manufacturer.country}}</mat-list-item>
+    </mat-list>
+  </div>
+
+  <div class="chart-container">
+    <div class="flex">
+      <div class="flex-item">
+        <div style="display: block;">
+          <canvas baseChart width="400" height="400"
+                  [datasets]="productChartData"
+                  [labels]="productChartLabels"
+                  [options]="productChartOptions"
+                  [colors]="productChartColors"
+                  [legend]="productChartLegend"
+                  [chartType]="productChartType">
+          </canvas>
+        </div>
       </div>
     </div>
   </div>
