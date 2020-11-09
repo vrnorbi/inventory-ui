@@ -17,6 +17,7 @@ export class StatsComponent implements OnInit {
   biggestPriceDropDataSource: TableDatasource<Stat>;
 
   displayedColumns = ['name', 'value', 'actions'];
+  priceDropDisplayedColumns = ['name', 'value', 'value2', 'difference', 'actions'];
 
   constructor(private httpService: HttpService) {
     this.lowQuantityDataSource = new TableDatasource<Stat>(httpService);
@@ -29,7 +30,7 @@ export class StatsComponent implements OnInit {
     this.lowQuantityDataSource.loadData('/products/low-quantity/');
     this.lowPriceDataSource.loadData('/products/low-price/');
     this.lowestCategoryPriceDataSource.loadData('/products/low-price-in-category/');
-    this.biggestPriceDropDataSource.loadData('/products/low-price-in-category/');
+    this.biggestPriceDropDataSource.loadData('/products/biggest-price-drops/');
   }
 
 }
