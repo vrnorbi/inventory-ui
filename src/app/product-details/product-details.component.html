@@ -1,39 +1,8 @@
 <h2 class="centered">{{product.name}}</h2>
 
 <div class="wrapper">
-  <div class="product-details-container">
-    <mat-list>
-      <mat-list-item>price: {{product.price}}</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>quantity: {{product.quantity}}</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>category: {{product.category.name}}</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>brand: {{product.brand.name}}</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>supplier name: {{product.supplier.name}}</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>supplier url: {{product.supplier.url}}</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>supplier rating: {{product.supplier.rating}}</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>supplier iban: {{product.supplier.iban}}</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>manufacturer name: {{product.manufacturer.name}}</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>manufacturer url: {{product.manufacturer.url}}</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>manufacturer rating: {{product.manufacturer.rating}}</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>manufacturer country: {{product.manufacturer.country}}</mat-list-item>
-    </mat-list>
-  </div>
-
   <div class="chart-container">
-    <div class="flex">
-      <div class="flex-item">
-        <div style="display: block;">
-          <canvas baseChart width="400" height="400"
+          <canvas baseChart
                   [datasets]="productChartData"
                   [labels]="productChartLabels"
                   [options]="productChartOptions"
@@ -41,8 +10,33 @@
                   [legend]="productChartLegend"
                   [chartType]="productChartType">
           </canvas>
-        </div>
-      </div>
-    </div>
   </div>
+</div>
+
+<div class="product-details-container">
+  <mat-list>
+    <mat-list-item><span>category:&nbsp;</span>{{product.category.name}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item><span>price:&nbsp;</span>{{product.price}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item><span>quantity:&nbsp;</span>{{product.quantity}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item><span>brand:&nbsp;</span>{{product.brand.name}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item><span>supplier name:&nbsp;</span>{{product.supplier.name}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item><span>supplier url:&nbsp;</span>{{product.supplier.url}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item><span>supplier rating:&nbsp;</span>{{product.supplier.rating}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item><span>supplier iban:&nbsp;</span>{{product.supplier.iban}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item><span>manufacturer name:&nbsp;</span>{{product.manufacturer.name}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item><span>manufacturer url:&nbsp;</span>{{product.manufacturer.url}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item><span>manufacturer rating:&nbsp;</span>{{product.manufacturer.rating}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item><span>manufacturer country:&nbsp;</span>{{product.manufacturer.country}}</mat-list-item>
+  </mat-list>
 </div>

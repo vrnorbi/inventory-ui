@@ -1,30 +1,32 @@
 .centered {
   text-align: center;
-  color: red;
+  color: #f44336;
   max-width: 40%;
   margin: 0 auto;
   padding-top: 40px;
   padding-bottom: 50px;
 }
 
-.wrapper {
-  text-align: center;
-  max-width: 100%;
-  margin: 0 auto;
-}
-
 .chart-container {
   text-align: center;
   color: red;
-  max-width: 40%;
+  max-width: 50%;
   margin: 0 auto;
+  padding-bottom: 50px;
 }
 
 .product-details-container {
+  /*border: 2px solid red;*/
   text-align: center;
   color: red;
-  max-width: 40%;
+  max-width: 30%;
   margin: 0 auto;
-  float:left;
-  vertical-align: middle;
+}
+
+/*.mat-divider {*/
+/*  border-top-color: red;*/
+/*}*/
+
+span {
+  color: #f44336;
 }

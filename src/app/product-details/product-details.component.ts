@@ -64,7 +64,7 @@ export class ProductDetailsComponent implements OnInit {
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     },
     { // red
-      backgroundColor: 'rgba(255,0,0,0.3)',
+      backgroundColor: 'rgba(244,67,54,0.3)',
       borderColor: 'red',
       pointBackgroundColor: 'rgba(148,159,177,1)',
       pointBorderColor: '#fff',
