@@ -14,6 +14,7 @@ export class StatsComponent implements OnInit {
   lowQuantityDataSource: TableDatasource<Stat>;
   lowPriceDataSource: TableDatasource<Stat>;
   lowestCategoryPriceDataSource: TableDatasource<Stat>;
+  biggestPriceDropDataSource: TableDatasource<Stat>;
 
   displayedColumns = ['name', 'value', 'actions'];
 
@@ -21,12 +22,14 @@ export class StatsComponent implements OnInit {
     this.lowQuantityDataSource = new TableDatasource<Stat>(httpService);
     this.lowPriceDataSource = new TableDatasource<Stat>(httpService);
     this.lowestCategoryPriceDataSource = new TableDatasource<Stat>(httpService);
+    this.biggestPriceDropDataSource = new TableDatasource<Stat>(httpService);
   }
 
   ngOnInit() {
     this.lowQuantityDataSource.loadData('/products/low-quantity/');
     this.lowPriceDataSource.loadData('/products/low-price/');
     this.lowestCategoryPriceDataSource.loadData('/products/low-price-in-category/');
+    this.biggestPriceDropDataSource.loadData('/products/low-price-in-category/');
   }
 
 }
