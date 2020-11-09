@@ -1,4 +1,4 @@
-<div class="stats-container">
+<div class="stats-slim-container">
 
   <h3>Products with low quantity</h3>
 
@@ -60,6 +60,50 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
+</div>
+
+
+<div class="stats-large-container">
+
+  <h3>Products with biggest price drops</h3>
+
+  <div class="spinner-container" *ngIf="biggestPriceDropDataSource.loading$ | async">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <mat-table class="stats-table mat-elevation-z8" [dataSource]="biggestPriceDropDataSource">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let stat">{{stat.name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="value">
+      <mat-header-cell *matHeaderCellDef>First date quantity</mat-header-cell>
+      <mat-cell *matCellDef="let stat">{{stat.value}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="value2">
+      <mat-header-cell *matHeaderCellDef>Last date quantity</mat-header-cell>
+      <mat-cell *matCellDef="let stat">{{stat.value2}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="difference">
+      <mat-header-cell *matHeaderCellDef>Difference</mat-header-cell>
+      <mat-cell *matCellDef="let stat" [ngStyle]="{'color': 'green'}">{{stat.value - stat.value2}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let stat;">
+        <button mat-icon-button color="accent" [routerLink]="['/products', stat.id]">
+          <mat-icon aria-label="View">remove_red_eye</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="priceDropDisplayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: priceDropDisplayedColumns"></mat-row>
+  </mat-table>
 
 
   <h3>Lowest priced products per category</h3>
@@ -95,46 +139,5 @@
 
     <mat-header-row *matHeaderRowDef="lowestCategoryPriceDisplayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: lowestCategoryPriceDisplayedColumns"></mat-row>
-  </mat-table>
-
-
-  <h3>Products with biggest price drops</h3>
-
-  <div class="spinner-container" *ngIf="biggestPriceDropDataSource.loading$ | async">
-    <mat-spinner></mat-spinner>
-  </div>
-
-  <mat-table class="stats-table mat-elevation-z8" [dataSource]="biggestPriceDropDataSource">
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
-      <mat-cell *matCellDef="let stat">{{stat.name}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="value">
-      <mat-header-cell *matHeaderCellDef>First date quantity</mat-header-cell>
-      <mat-cell *matCellDef="let stat">{{stat.value}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="value2">
-      <mat-header-cell *matHeaderCellDef>Last date quantity</mat-header-cell>
-      <mat-cell *matCellDef="let stat">{{stat.value2}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="difference">
-      <mat-header-cell *matHeaderCellDef>Difference</mat-header-cell>
-      <mat-cell *matCellDef="let stat">{{stat.value - stat.value2}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef></mat-header-cell>
-      <mat-cell *matCellDef="let stat;">
-        <button mat-icon-button color="accent" [routerLink]="['/products', stat.id]">
-          <mat-icon aria-label="View">remove_red_eye</mat-icon>
-        </button>
-      </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="priceDropDisplayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: priceDropDisplayedColumns"></mat-row>
   </mat-table>
 </div>
