@@ -69,9 +69,14 @@
   </div>
 
   <mat-table class="stats-table mat-elevation-z8" [dataSource]="lowestCategoryPriceDataSource">
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+    <ng-container matColumnDef="categoryName">
+      <mat-header-cell *matHeaderCellDef>Category name</mat-header-cell>
       <mat-cell *matCellDef="let stat">{{stat.name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="productName">
+      <mat-header-cell *matHeaderCellDef>Product name</mat-header-cell>
+      <mat-cell *matCellDef="let stat">{{stat.name2}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="value">
@@ -88,8 +93,8 @@
       </mat-cell>
     </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    <mat-header-row *matHeaderRowDef="lowestCategoryPriceDisplayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: lowestCategoryPriceDisplayedColumns"></mat-row>
   </mat-table>
 
 
@@ -117,7 +122,7 @@
 
     <ng-container matColumnDef="difference">
       <mat-header-cell *matHeaderCellDef>Difference</mat-header-cell>
-      <mat-cell *matCellDef="let stat">{{stat.value2 - stat.value}}</mat-cell>
+      <mat-cell *matCellDef="let stat">{{stat.value - stat.value2}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actions">
