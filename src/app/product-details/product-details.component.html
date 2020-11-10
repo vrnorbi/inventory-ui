@@ -2,14 +2,14 @@
 
 <div class="wrapper">
   <div class="chart-container">
-          <canvas baseChart
-                  [datasets]="productChartData"
-                  [labels]="productChartLabels"
-                  [options]="productChartOptions"
-                  [colors]="productChartColors"
-                  [legend]="productChartLegend"
-                  [chartType]="productChartType">
-          </canvas>
+    <canvas baseChart
+            [datasets]="productChartData"
+            [labels]="productChartLabels"
+            [options]="productChartOptions"
+            [colors]="productChartColors"
+            [legend]="productChartLegend"
+            [chartType]="productChartType">
+    </canvas>
   </div>
 </div>
 
@@ -25,15 +25,18 @@
     <mat-divider></mat-divider>
     <mat-list-item><span>supplier name:&nbsp;</span>{{product.supplier.name}}</mat-list-item>
     <mat-divider></mat-divider>
-    <mat-list-item><span>supplier url:&nbsp;</span>{{product.supplier.url}}</mat-list-item>
+    <mat-list-item><span>supplier url:&nbsp;</span><a href="{{product.supplier.url}}"
+                                                      target="_blank">{{product.supplier.url}}</a></mat-list-item>
     <mat-divider></mat-divider>
-    <mat-list-item><span>supplier rating:&nbsp;</span>{{product.supplier.rating}}</mat-list-item>
+    <mat-list-item ><span>supplier rating:&nbsp;</span>{{product.supplier.rating}}</mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item><span>supplier iban:&nbsp;</span>{{product.supplier.iban}}</mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item><span>manufacturer name:&nbsp;</span>{{product.manufacturer.name}}</mat-list-item>
     <mat-divider></mat-divider>
-    <mat-list-item><span>manufacturer url:&nbsp;</span>{{product.manufacturer.url}}</mat-list-item>
+    <mat-list-item><span>manufacturer url:&nbsp;</span><a href="{{product.manufacturer.url}}"
+                                                          target="_blank">{{product.manufacturer.url}}</a>
+    </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item><span>manufacturer rating:&nbsp;</span>{{product.manufacturer.rating}}</mat-list-item>
     <mat-divider></mat-divider>

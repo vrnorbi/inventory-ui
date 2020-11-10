@@ -12,7 +12,7 @@ export class ProductResolver implements Resolve<ProductWithHistory> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ProductWithHistory> {
     return this.httpService.find<ProductWithHistory>(
-      '/producthistory/filter',
+      '/product-history/filter',
       {productId: route.params['id']}
       );
   }
