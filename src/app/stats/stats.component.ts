@@ -17,7 +17,7 @@ export class StatsComponent implements OnInit {
   biggestPriceDropDataSource: TableDatasource<Stat>;
 
   displayedColumns = ['name', 'value', 'actions'];
-  lowestCategoryPriceDisplayedColumns = ['categoryName', 'productName', 'actions'];
+  lowestCategoryPriceDisplayedColumns = ['categoryName', 'productName', 'value', 'actions'];
   priceDropDisplayedColumns = ['name', 'value', 'value2', 'difference', 'actions'];
 
   constructor(private httpService: HttpService) {

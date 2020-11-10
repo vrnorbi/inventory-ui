@@ -1,7 +1,7 @@
-import {ProductLight} from './product-light';
 import {ProductHistory} from './product-history';
+import {Product} from './product';
 
 export interface ProductWithHistory {
-  product: ProductLight;
+  product: Product;
   productHistories: Array<ProductHistory>;
 }
