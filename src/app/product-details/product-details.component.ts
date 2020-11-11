@@ -83,8 +83,8 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.route.snapshot.data);
-    this.product = this.route.snapshot.data['productHistories'].product;
-    this.productHistories = this.route.snapshot.data['productHistories'].productHistories;
+    this.product = this.route.snapshot.data['product'];
+    this.productHistories = this.route.snapshot.data['productHistories'];
     const dates: Array<string> = this.productHistories.map(value => formatDate(value.date, 'yyyy-MM-dd hh:mm', 'en-US'));
     const prices: Array<number> = this.productHistories.map(value => value.price);
     const quantities: Array<number> = this.productHistories.map(value => value.quantity);

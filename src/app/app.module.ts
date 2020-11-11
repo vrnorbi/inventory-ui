@@ -31,9 +31,10 @@ import {SuppliersComponent} from './suppliers/suppliers.component';
 import {BrandsComponent} from './brands/brands.component';
 import {ChartsModule} from 'ng2-charts';
 import {ProductDetailsComponent} from './product-details/product-details.component';
-import {ProductResolver} from './services/product.resolver';
+import {ProductHistoryResolver} from './services/product-history-resolver.service';
 import {ColorService} from './services/color.service';
 import {StatsComponent} from './stats/stats.component';
+import {ProductResolver} from './services/product-resolver.service';
 
 @NgModule({
   declarations: [
@@ -72,9 +73,10 @@ import {StatsComponent} from './stats/stats.component';
   ],
   providers: [
     ProductsService,
-    ProductResolver,
     HttpService,
-    ColorService
+    ColorService,
+    ProductHistoryResolver,
+    ProductResolver
   ],
   bootstrap: [AppComponent]
 })

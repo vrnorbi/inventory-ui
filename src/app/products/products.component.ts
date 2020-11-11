@@ -41,7 +41,6 @@ export class ProductsComponent implements OnInit, AfterViewInit {
               private dialog: MatDialog) {}
 
   ngOnInit() {
-    console.log(history.state.data);
     this.categoryInputText = history.state.data;
     this.dataSource = new ProductsDataSource(this.productsService);
     this.dataSource.loadProducts(this.categoryInputText);
