@@ -18,7 +18,7 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
 
   dataSource: PagingTableDatasource<Category>;
 
-  displayedColumns = ['name'];
+  displayedColumns = ['name', 'actions'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 

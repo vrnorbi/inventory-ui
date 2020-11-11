@@ -4,7 +4,7 @@
     <input matInput placeholder="name" #name>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="category" #category>
+    <input matInput placeholder="category" [(ngModel)]="categoryInputText" #category>
   </mat-form-field>
   <mat-form-field>
     <input matInput type="number" placeholder="from price" #priceFrom>

@@ -6,8 +6,9 @@ import {CategoriesComponent} from './categories/categories.component';
 import {BrandsComponent} from './brands/brands.component';
 import {SuppliersComponent} from './suppliers/suppliers.component';
 import {ProductDetailsComponent} from './product-details/product-details.component';
-import {ProductResolver} from './services/product.resolver';
+import {ProductHistoryResolver} from './services/product-history-resolver.service';
 import {StatsComponent} from './stats/stats.component';
+import {ProductResolver} from './services/product-resolver.service';
 
 const routes: Routes = [
   {
@@ -45,7 +46,8 @@ const routes: Routes = [
     path: 'products/:id',
     component: ProductDetailsComponent,
     resolve: {
-      productHistories: ProductResolver
+      product: ProductResolver,
+      productHistories: ProductHistoryResolver
     }
   },
   {
