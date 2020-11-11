@@ -24,6 +24,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   dataSource: ProductsDataSource;
   displayedColumns = ['name', 'price', 'quantity', 'category', 'manufacturer', 'actions'];
   pageSize = 10;
+  categoryInputText: string;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('name') nameInput: ElementRef;
@@ -40,8 +41,10 @@ export class ProductsComponent implements OnInit, AfterViewInit {
               private dialog: MatDialog) {}
 
   ngOnInit() {
+    console.log(history.state.data);
+    this.categoryInputText = history.state.data;
     this.dataSource = new ProductsDataSource(this.productsService);
-    this.dataSource.loadProducts();
+    this.dataSource.loadProducts(this.categoryInputText);
   }
 
   openDialog(product: Product = Constants.emptyProduct()): void {
@@ -78,13 +81,12 @@ export class ProductsComponent implements OnInit, AfterViewInit {
         tap(() => this.loadProductsPage())
       )
       .subscribe();
-
   }
 
   private loadProductsPage() {
     this.dataSource.loadProducts(
       this.nameInput.nativeElement.value,
-      this.categoryInput.nativeElement.value,
+      this.categoryInputText,
       this.priceFromInput.nativeElement.value,
       this.priceToInput.nativeElement.value,
       this.quantityFrom.nativeElement.value,

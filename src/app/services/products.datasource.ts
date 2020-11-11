@@ -19,8 +19,8 @@ export class ProductsDataSource implements DataSource<Product> {
   constructor(private productsService: ProductsService) {
   }
 
-  loadProducts(name: string = '',
-               category: string = '',
+  loadProducts(category: string = '',
+               name: string = '',
                priceFrom: string = '',
                priceTo: string = '',
                quantityFrom: string = '',
