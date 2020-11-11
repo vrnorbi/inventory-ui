@@ -3,7 +3,6 @@ import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {BaseChartDirective, Color, Label} from 'ng2-charts';
 import {ActivatedRoute} from '@angular/router';
 import {ProductHistory} from '../model/product-history';
-import {ProductLight} from '../model/product-light';
 import {formatDate} from '@angular/common';
 import {Product} from '../model/product';
 
