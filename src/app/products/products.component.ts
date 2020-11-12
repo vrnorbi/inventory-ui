@@ -22,7 +22,7 @@ import {HttpService} from '../services/http.service';
 export class ProductsComponent implements OnInit, AfterViewInit {
 
   dataSource: ProductsDataSource;
-  displayedColumns = ['name', 'price', 'quantity', 'category', 'manufacturer', 'actions'];
+  displayedColumns = ['name', 'category', 'price', 'quantity', 'actions'];
   pageSize = 10;
   categoryInputText: string;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -84,8 +84,8 @@ export class ProductsComponent implements OnInit, AfterViewInit {
 
   private loadProductsPage() {
     this.dataSource.loadProducts(
-      this.nameInput.nativeElement.value,
       this.categoryInputText,
+      this.nameInput.nativeElement.value,
       this.priceFromInput.nativeElement.value,
       this.priceToInput.nativeElement.value,
       this.quantityFrom.nativeElement.value,
