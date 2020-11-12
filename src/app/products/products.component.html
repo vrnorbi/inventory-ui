@@ -30,6 +30,12 @@
       <mat-cell *matCellDef="let product">{{product.name}}</mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="category">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Category</mat-header-cell>
+      <mat-cell class="description-cell"
+                *matCellDef="let product">{{product.category.name}}</mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="price">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
       <mat-cell class="description-cell"
@@ -43,18 +49,6 @@
                 [ngStyle]="{'color': colorService.getColorForValue(product.quantity, 50)}">
         {{product.quantity}}
       </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="category">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Category</mat-header-cell>
-      <mat-cell class="description-cell"
-                *matCellDef="let product">{{product.category.name}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="manufacturer">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Manufacturer</mat-header-cell>
-      <mat-cell class="description-cell"
-                *matCellDef="let product">{{product.manufacturer.name}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actions">
